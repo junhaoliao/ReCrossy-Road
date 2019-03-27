@@ -18,12 +18,22 @@ char getCharFromNum(int num){
     return value;
 }
 
-void write_char(int x, int y, char c) {
-    // VGA character buffer
-    volatile char * character_buffer = (char *) (0x09000000 + (y<<7) + x);
-    *character_buffer = c;
-}
 
+void VGA_text(int x, int y, char * text_ptr)
+{
+    int offset;
+    volatile char * character_buffer = (char *) 0xC9000000  ;	// VGA character buffer
+
+    /* assume that the text string fits on one line */
+    offset = (y << 7) + x;
+    while ( *(text_ptr) )
+    {
+        // write to the character buffer
+        *(character_buffer + offset) = *(text_ptr);
+        ++text_ptr;
+        ++offset;
+    }
+}
 void plot_pixel(int x, int y, short int line_color) {
     *(short *) (pixel_buffer_start + (y << 10) + (x << 1)) = line_color;
 }
@@ -409,9 +419,20 @@ unsigned oneSecCount;
             pixel_buffer_start = *(pixel_ctrl_ptr + 1); // new back buffer
         }
         // plot score
-        write_char(260,20,getCharFromNum(score_hundred));
-        write_char(280,20,'1');
-        write_char(300,20,getCharFromNum(score_one));
+        char myScoreString[40];
+        if(score_hundred!=0){
+            myScoreString[0] = score_hundred+'0';
+        } else{
+            myScoreString[0] = ' ';
+        }
+        if(score_hundred==0&&score_ten==0){
+            myScoreString[1] = ' ';
+        } else{
+            myScoreString[1] = score_ten+'0';
+        }
+        myScoreString[2]=score_one+'0';
+        myScoreString[3]='\0';
+        VGA_text(300,0,myScoreString);
         if (!gameOn || gameOver) {
             //plot background
             goto newGame;
