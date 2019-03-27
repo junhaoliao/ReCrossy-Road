@@ -13,7 +13,7 @@ volatile int pixel_buffer_start;
 int *chickImageSelection[4] = {image_UP_22x34, image_UP_22x34, image_UP_22x34, image_UP_22x34};
 
 
-char getCharFromNum(int num)
+char getCharFromNum(int num){
     char value = num + '0';
     return value;
 }
