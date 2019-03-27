@@ -10,5 +10,5 @@ and inspire us over a whole academic year.
 WE, the creators of "ReCrossy Road" did not design the sprites used, neither do we own the rights
 to authorise any distribution of Hipster Whale's work.
 
-The data below should only be used for the project "ReCrossy Road" in ECE243 at the University of Toronto, Canada.
-We are against any non-academic distributions of the data below, especially of commercial purpose.
+The graphical data should only be used for the project "ReCrossy Road" in ECE243 at the University of Toronto, Canada.
+We are against any non-academic distributions of the graphical data , especially of commercial purpose.
