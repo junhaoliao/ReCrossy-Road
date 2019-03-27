@@ -10,13 +10,9 @@ volatile int *SW_ptr = (int *) 0xFF200040;
 volatile int *KEY_EDGE_ptr = (int *) 0xFF20005C;
 volatile int pixel_buffer_start;
 
-int *chickImageSelection[4] = {image_UP_22x34, image_UP_22x34, image_UP_22x34, image_UP_22x34};
+int *chickImageSelection[4] = {image_UP_22x34, image_DOWN_22x34, image_LEFT_27x34, image_RIGHT_27x34};
 
 
-char getCharFromNum(int num){
-    char value = num + '0';
-    return value;
-}
 
 
 void VGA_text(int x, int y, char * text_ptr)
@@ -120,11 +116,23 @@ typedef struct road {
 } ROAD;
 
 
-CAR carsSelection[2] = {
+CAR carsSelection[8] = {
         {.x=-80, .y=-31, .speed=1, .imageWidth=83, .imageHeight=57, .carType=0, .carImage=image_carGreenLTR_83x57, .collisionLeft=
         -80 + 8, .collisionRight=-80 + 77},
-        {.x=-80, .y=-31, .speed=1, .imageWidth=83, .imageHeight=57, .carType=0, .carImage=image_carGreenLTR_83x57, .collisionLeft=
-        -80 + 8, .collisionRight=-80 + 77},
+        {.x=-80, .y=-36, .speed=2, .imageWidth=64, .imageHeight=56, .carType=1, .carImage=image_carBlueLTR_64x56, .collisionLeft=
+        -80 + 5, .collisionRight=-80 + 60},
+        {.x=-80, .y=-35, .speed=3, .imageWidth=74, .imageHeight=55, .carType=2, .carImage=image_carYellowLTR_74x55, .collisionLeft=
+        -80 + 6, .collisionRight=-80 + 69},
+        {.x=-80, .y=-51, .speed=4, .imageWidth=117, .imageHeight=83, .carType=3, .carImage=image_truckRedLTR_117x83, .collisionLeft=
+        -80 + 8, .collisionRight=-80 + 113},
+        {.x=-80, .y=-35, .speed=4, .imageWidth=74, .imageHeight=53, .carType=4, .carImage=image_carVioletLTR_74x53, .collisionLeft=
+        -80 + 5, .collisionRight=-80 + 67},
+        {.x=320, .y=73, .speed=3, .imageWidth=74, .imageHeight=51, .carType=5, .carImage=image_carYellowRTL_74x51, .collisionLeft=
+        320 + 5, .collisionRight=68},
+        {.x=320, .y=71, .speed=2, .imageWidth=74, .imageHeight=52, .carType=6, .carImage=image_carRedRTL_74x52, .collisionLeft=
+        320 + 6, .collisionRight=68},
+        {.x=320, .y=58, .speed=1, .imageWidth=122, .imageHeight=74, .carType=7, .carImage=image_truckBlueRTL_122x74, .collisionLeft=
+        320 + 9, .collisionRight=116},
 };
 
 typedef struct chick {
@@ -150,12 +158,22 @@ void plot_image(int initialX, int initialY, int imageArray[], unsigned width, un
 
 void carMove(ROAD *myRoad) {
     switch (myRoad->carOnRoad.carType) {
-        case 0: {
+        case 0 ... 4: {
             if (myRoad->carOnRoad.x + myRoad->carOnRoad.speed * 4 < 320) {
                 myRoad->carOnRoad.x += myRoad->carOnRoad.speed * 4;
                 myRoad->carOnRoad.y += myRoad->carOnRoad.speed;
             } else {
-                myRoad->carOnRoad = carsSelection[rand() % 2];
+                myRoad->carOnRoad = carsSelection[rand() % 8];
+                myRoad->carOnRoad.y += myRoad->initialY;
+            }
+            break;
+        }
+        case 5 ... 7: {
+            if (myRoad->carOnRoad.x - myRoad->carOnRoad.speed * 4 < -80) {
+                myRoad->carOnRoad.x -= myRoad->carOnRoad.speed * 4;
+                myRoad->carOnRoad.y -= myRoad->carOnRoad.speed;
+            } else {
+                myRoad->carOnRoad = carsSelection[rand() % 8];
                 myRoad->carOnRoad.y += myRoad->initialY;
             }
             break;
@@ -169,6 +187,41 @@ bool carHitTest(ROAD *myRoad, chick *myChick) {
         case 0: {
             myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 8;
             myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 77;
+            break;
+        }
+        case 1: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 5;
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 60;
+            break;
+        }
+        case 2: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 6;
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 69;
+            break;
+        }
+        case 3: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 8;
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 113;
+            break;
+        }
+        case 4: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 5;
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 67;
+            break;
+        }
+        case 5: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 5;
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 68;
+            break;
+        }
+        case 6: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 6;
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 68;
+            break;
+        }
+        case 7: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 9;
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 116;
             break;
         }
         default:;
@@ -271,29 +324,29 @@ unsigned oneSecCount;
         score = 0;
         newChick = (chick) {.x = 160, .y= 186, .faceType=0, .imageWidth=22, .imageHeight=34};
 
-        road_3 = (ROAD) {.initialY = -3 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road_3 = (ROAD) {.initialY = -3 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road_3.carOnRoad.y += -3 * 30;
 
-        road_2 = (ROAD) {.initialY = -2 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road_2 = (ROAD) {.initialY = -2 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road_2.carOnRoad.y += -2 * 30;
 
-        road_1 = (ROAD) {.initialY = -1 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road_1 = (ROAD) {.initialY = -1 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road_1.carOnRoad.y += -1 * 30;
 
-        road0 = (ROAD) {.initialY = 0, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
-        road1 = (ROAD) {.initialY = 1 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road0 = (ROAD) {.initialY = 0, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+        road1 = (ROAD) {.initialY = 1 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road1.carOnRoad.y += 1 * 30;
-        road2 = (ROAD) {.initialY = 2 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road2 = (ROAD) {.initialY = 2 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road2.carOnRoad.y += 2 * 30;
-        road3 = (ROAD) {.initialY = 3 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road3 = (ROAD) {.initialY = 3 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road3.carOnRoad.y += 3 * 30;
-        road4 = (ROAD) {.initialY = 4 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road4 = (ROAD) {.initialY = 4 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road4.carOnRoad.y += 4 * 30;
-        road5 = (ROAD) {.initialY = 5 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road5 = (ROAD) {.initialY = 5 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road5.carOnRoad.y += 5 * 30;
-        road6 = (ROAD) {.initialY = 6 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road6 = (ROAD) {.initialY = 6 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road6.carOnRoad.y += 6 * 30;
-        road7 = (ROAD) {.initialY = 7 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 2]};
+        road7 = (ROAD) {.initialY = 7 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
         road7.carOnRoad.y += 7 * 30;
         pixel_buffer_start = *(pixel_ctrl_ptr + 1); // we draw on the back buffer
     }
