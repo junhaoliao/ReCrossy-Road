@@ -12,7 +12,24 @@ volatile int pixel_buffer_start;
 
 int *chickImageSelection[4] = {image_UP_22x34, image_DOWN_22x34, image_LEFT_27x34, image_RIGHT_27x34};
 
-ffasdfsdf
+
+//plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+
+
+
+//void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
+//    int i = 0;
+//    for (unsigned y = 0; y < height; y++) {
+//        for (unsigned x = 0; x < width; x++) {
+//            int plotX = initialX + x;
+//            int plotY = initialY + y;
+//            if (imageArray[i] != 0b1111100000011111 && plotX >= 0 && plotY >= 0 && plotX < 320 && plotY < 240)
+//                plot_pixel(plotX, plotY, imageArray[i]);
+//            i++;
+//        }
+//    }
+//}
+
 
 
 void VGA_text(int x, int y, char * text_ptr)
@@ -155,6 +172,37 @@ void plot_image(int initialX, int initialY, int imageArray[], unsigned width, un
         }
     }
 }
+
+void plot_chicken(int initialX, int initialY, int facetype,){
+
+    int *imageArray = NULL;
+    int height = 0;
+    int width = 0;
+
+    if(facetype == 0){
+        imageArray = chickImageSelection[1];
+        height = 34;
+        width = 22;
+    }else if(facetype == 1){
+        imageArray = chickImageSelection[2];
+        height = 34;
+        width = 22;
+    }else if(facetype == 2){
+        imageArray = chickImageSelection[3];
+        height = 34;
+        width = 27;
+    }else if(facetype == 3){
+        imageArray = chickImageSelection[4];
+        height = 34;
+        width = 27;
+    }
+
+    plot_image(initialX,initialY,imageArray,width,height);
+}
+
+
+
+
 
 void carMove(ROAD *myRoad) {
     switch (myRoad->carOnRoad.carType) {
@@ -403,48 +451,48 @@ unsigned oneSecCount;
 
         plot_car_on_road(&road_3);
         if (road_3.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road_2);
         if (road_2.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road_1);
         if (road_1.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road0);
         if (road0.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road1);
         if (road1.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road2);
         if (road2.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road3);
         if (road3.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road4);
         if (road4.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road5);
         if (road5.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
 
         plot_car_on_road(&road6);
         if (road6.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         plot_car_on_road(&road7);
         if (road7.stepOn)//plot chick
-            plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
+            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
 
         //carMove(&carGreenLTR_83x57);
 
