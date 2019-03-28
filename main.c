@@ -13,25 +13,6 @@ volatile int pixel_buffer_start;
 int *chickImageSelection[4] = {image_UP_22x34, image_DOWN_22x34, image_LEFT_27x34, image_RIGHT_27x34};
 
 
-//plot_image(newChick.x, newChick.y, chickImageSelection[newChick.faceType], 22, 34);
-
-
-
-//void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
-//    int i = 0;
-//    for (unsigned y = 0; y < height; y++) {
-//        for (unsigned x = 0; x < width; x++) {
-//            int plotX = initialX + x;
-//            int plotY = initialY + y;
-//            if (imageArray[i] != 0b1111100000011111 && plotX >= 0 && plotY >= 0 && plotX < 320 && plotY < 240)
-//                plot_pixel(plotX, plotY, imageArray[i]);
-//            i++;
-//        }
-//    }
-//}
-
-
-
 void VGA_text(int x, int y, char * text_ptr)
 {
     int offset;
@@ -416,9 +397,12 @@ unsigned oneSecCount;
         int KEY_release = *KEY_EDGE_ptr;
         *KEY_EDGE_ptr = 0xF;
 
-        if (!gameOn || gameOver) {
+        if (!gameOn) {
             //plot background
             goto nextFrame;
+        }
+        if(!gameOver){
+            goto gameOverRoutine;
         }
         chickMove(KEY_release, &newChick);
 
@@ -514,6 +498,22 @@ unsigned oneSecCount;
         gameOver |= carHitTest(&road6, &newChick);
         gameOver |= carHitTest(&road7, &newChick);
 
+
+
+        gameOverRoutine:{
+            if(gameOver){
+                plot_image(0,0,image_gameOverPage_320x240,320,240);
+                int KEY_release = *KEY_EDGE_ptr;
+                *KEY_EDGE_ptr = 0xF;
+                if(KEY_release==0b0001){
+                    gameOver=false;
+                    gameOn=true;
+                    goto newGame;
+                }
+            }
+        }
+
+
         nextFrame:
         {
             wait_for_vsync(); // swap front and back buffers on VGA vertical sync
@@ -534,10 +534,6 @@ unsigned oneSecCount;
         myScoreString[2]=score_one+'0';
         myScoreString[3]='\0';
         VGA_text(300,0,myScoreString);
-        if (!gameOn || gameOver) {
-            //plot background
-            goto newGame;
-        }
     }
     return 0;
 }
