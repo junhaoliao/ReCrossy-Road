@@ -7,7 +7,7 @@
 // global variables
 volatile int * LEDR_ptr = (int *)0xFF200000;
 volatile int *SW_ptr = (int *) 0xFF200040;
-volatile int *KEY_EDGE_ptr = (int *) 0xFF20005C;
+volatile int *KEY_EDGE_ptr = (int *) 0xFF20005C;//haha
 volatile int pixel_buffer_start;
 
 int *chickImageSelection[4] = {image_UP_22x34, image_DOWN_22x34, image_LEFT_27x34, image_RIGHT_27x34};
