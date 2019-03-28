@@ -12,7 +12,7 @@ volatile int pixel_buffer_start;
 
 int *chickImageSelection[4] = {image_UP_22x34, image_DOWN_22x34, image_LEFT_27x34, image_RIGHT_27x34};
 
-
+ffasdfsdf
 
 
 void VGA_text(int x, int y, char * text_ptr)
