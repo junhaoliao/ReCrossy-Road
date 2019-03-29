@@ -150,9 +150,11 @@ int main() {
         if (gameOver) {
             goto gameOverRoutine;
         }
+
+        // update the chicken location and facing if it is moved
         chickMove(KEY_release, &newChick);
 
-
+        // move the cars
         carMove(&road_3);
         carMove(&road_2);
         carMove(&road_1);
@@ -165,7 +167,7 @@ int main() {
         carMove(&road6);
         carMove(&road7);
 
-
+        // plot the roads
         plot_road(&road_3);
         plot_road(&road_2);
         plot_road(&road_1);
@@ -178,51 +180,53 @@ int main() {
         plot_road(&road6);
         plot_road(&road7);
 
-
+        // plot the roads and chicken in order so that the chicken won't appear standing
+        // on any cars when it is actually behind the car
+        // This achieves 3D interface very well
         plot_car_on_road(&road_3);
-        if (road_3.stepOn)//plot chick
+        if (road_3.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road_2);
-        if (road_2.stepOn)//plot chick
+        if (road_2.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road_1);
-        if (road_1.stepOn)//plot chick
+        if (road_1.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road0);
-        if (road0.stepOn)//plot chick
+        if (road0.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road1);
-        if (road1.stepOn)//plot chick
+        if (road1.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road2);
-        if (road2.stepOn)//plot chick
+        if (road2.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road3);
-        if (road3.stepOn)//plot chick
+        if (road3.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road4);
-        if (road4.stepOn)//plot chick
+        if (road4.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road5);
-        if (road5.stepOn)//plot chick
+        if (road5.stepOn)
             plot_chicken(&newChick);
 
-
         plot_car_on_road(&road6);
-        if (road6.stepOn)//plot chick
+        if (road6.stepOn)
             plot_chicken(&newChick);
 
         plot_car_on_road(&road7);
-        if (road7.stepOn)//plot chick
+        if (road7.stepOn)
             plot_chicken(&newChick);
+
 
         // update the gameOver status
         gameOver |= carHitTest(&road_3, &newChick);
@@ -240,10 +244,13 @@ int main() {
         gameOverRoutine:
         {
             if (gameOver) {
+
                 plot_image(0, 0, image_gameOverPage_320x240, 320, 240);
+
                 int KEY_release = *KEY_EDGE_ptr;
                 *KEY_EDGE_ptr = 0xF;
-                if (KEY_release == 0b0001) {
+
+                if (KEY_release == 0b0001) { // press KEY0 to restart
                     gameOver = false;
                     gameOn = true;
                     goto newGame;
