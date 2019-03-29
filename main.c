@@ -154,36 +154,32 @@ void plot_image(int initialX, int initialY, int imageArray[], unsigned width, un
     }
 }
 
-void plot_chicken(int initialX, int initialY, int facetype,){
+void plot_chicken(chick *myChick){
 
-    int *imageArray = NULL;
-    int height = 0;
-    int width = 0;
 
-    if(facetype == 0){
-        imageArray = chickImageSelection[1];
+    unsigned height = 0;
+    unsigned width = 0;
+switch (myChick->faceType) {
+    case 0:
         height = 34;
         width = 22;
-    }else if(facetype == 1){
-        imageArray = chickImageSelection[2];
+        break;
+    case 1:
         height = 34;
         width = 22;
-    }else if(facetype == 2){
-        imageArray = chickImageSelection[3];
+        break;
+    case 2:
         height = 34;
         width = 27;
-    }else if(facetype == 3){
-        imageArray = chickImageSelection[4];
+        break;
+    case 3:
         height = 34;
         width = 27;
-    }
+        break;
 
-    plot_image(initialX,initialY,imageArray,width,height);
 }
-
-
-
-
+    plot_image(myChick->x,myChick->y,chickImageSelection[myChick->faceType],width,height);
+}
 
 void carMove(ROAD *myRoad) {
     switch (myRoad->carOnRoad.carType) {
@@ -401,7 +397,7 @@ unsigned oneSecCount;
             //plot background
             goto nextFrame;
         }
-        if(!gameOver){
+        if(gameOver){
             goto gameOverRoutine;
         }
         chickMove(KEY_release, &newChick);
@@ -435,48 +431,48 @@ unsigned oneSecCount;
 
         plot_car_on_road(&road_3);
         if (road_3.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road_2);
         if (road_2.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road_1);
         if (road_1.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road0);
         if (road0.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road1);
         if (road1.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road2);
         if (road2.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road3);
         if (road3.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road4);
         if (road4.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road5);
         if (road5.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
 
         plot_car_on_road(&road6);
         if (road6.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         plot_car_on_road(&road7);
         if (road7.stepOn)//plot chick
-            plot_chicken(newChick.x, newChick.y, chickImageSelection[newChick.faceType]);
+            plot_chicken(&newChick);
 
         //carMove(&carGreenLTR_83x57);
 
@@ -510,7 +506,11 @@ unsigned oneSecCount;
                     gameOn=true;
                     goto newGame;
                 }
+                wait_for_vsync(); // swap front and back buffers on VGA vertical sync
+                pixel_buffer_start = *(pixel_ctrl_ptr + 1); // new back buffer
+                goto gameOverRoutine;
             }
+
         }
 
 
@@ -519,6 +519,10 @@ unsigned oneSecCount;
             wait_for_vsync(); // swap front and back buffers on VGA vertical sync
             pixel_buffer_start = *(pixel_ctrl_ptr + 1); // new back buffer
         }
+        if(!gameOn){
+            goto newGame;
+        }
+
         // plot score
         char myScoreString[40];
         if(score_hundred!=0){
