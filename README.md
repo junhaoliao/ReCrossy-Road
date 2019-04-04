@@ -1,5 +1,9 @@
 # ReCrossy Road
 
+Updated April 4, 2019:
+
+Now you can control the game using keyboard as we added interrupt and PS2 support.
+
 
 Please note this repository is shared only for academic purpose. Copying others work and any other means of plagiarizing are serious offenses at the University of Toronto.  
 
