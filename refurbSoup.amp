@@ -14,12 +14,19 @@
             <source_file filepath="true">main.c</source_file>
         </source_files>
         <options>
-            <compiler_flags>-g -O1 -std=c99</compiler_flags>
+            <compiler_flags>-g -O1 -std=gnu99</compiler_flags>
         </options>
-        <linker_sections type="Basic">
-            <linker_section name=".text">
+        <linker_sections type="Exceptions">
+            <linker_section name=".vectors">
                 <memory_device>ARM_DDR3_SDRAM.axi_slave</memory_device>
                 <base_address>0x00000000</base_address>
+                <end_address>0x0000003F</end_address>
+                <required_section/>
+                <fixed_base_address/>
+            </linker_section>
+            <linker_section name=".text">
+                <memory_device>ARM_DDR3_SDRAM.axi_slave</memory_device>
+                <base_address>0x00000040</base_address>
                 <end_address>0x3FFFFFF7</end_address>
                 <required_section/>
             </linker_section>

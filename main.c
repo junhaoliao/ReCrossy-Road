@@ -4,7 +4,10 @@
 #include <stdlib.h>
 #include "images.h"
 #include "objects.h"
+#include "interrupt.h"
 
+volatile int key_dir = 0;
+volatile int pattern = 0x0F0F0F0F; // pattern for LED lights
 
 // global variables for I/O devices addresses
 volatile int *LEDR_ptr = (int *) 0xFF200000;
@@ -14,6 +17,11 @@ volatile char *character_buffer = (char *) 0xC9000000;// VGA character buffer
 volatile int *pixel_ctrl_ptr = (int *) 0xFF203020; // pixel controller
 volatile int pixel_buffer_start;
 
+bool KEYBOARD_UP = false;
+bool KEYBOARD_DOWN = false;
+bool KEYBOARD_LEFT = false;
+bool KEYBOARD_RIGHT = false;
+bool KEYBOARD_RESTART = false;
 
 // subroutine for plotting text on the screen
 void VGA_text(int x, int y, char *text_ptr);
@@ -22,7 +30,7 @@ void VGA_text(int x, int y, char *text_ptr);
 void plot_pixel(int x, int y, short int line_color) {
     *(short *) (pixel_buffer_start + (y << 10) + (x << 1)) = line_color;
 }
-
+//
 // subroutine for plotting a line on the screen (currently not used in this program)
 void plot_line(int x0, int y0, int x1, int y1, short int line_color);
 
@@ -69,7 +77,11 @@ bool gameOn = false;
 bool gameOver = false;
 
 int main() {
-
+    set_A9_IRQ_stack();
+    config_GIC();
+    config_KEYs();
+    config_PS2();//////
+    enable_A9_interrupts();
     /* set front pixel buffer to start of FPGA On-chip memory */
     *(pixel_ctrl_ptr + 1) = 0xC8000000; // first store the address in the
     // back buffer
@@ -250,7 +262,8 @@ int main() {
                 int KEY_release = *KEY_EDGE_ptr;
                 *KEY_EDGE_ptr = 0xF;
 
-                if (KEY_release == 0b0001) { // press KEY0 to restart
+                if (KEY_release == 0b0001||KEYBOARD_RESTART) { // press KEY0 to restart
+                    KEYBOARD_RESTART = false;
                     gameOver = false;
                     gameOn = true;
                     goto newGame;
@@ -434,8 +447,20 @@ void plot_chicken(chick *myChick) {
 
 // function for updating the chicken's location&facing, according to the user's input from KEYs
 void chickMove(int key, chick *myChick) {
+    if(KEYBOARD_UP){
+        goto go_up;
+    } else if(KEYBOARD_DOWN){
+        goto go_down;
+    }else if(KEYBOARD_LEFT){
+        goto go_left;
+    }else if(KEYBOARD_RIGHT){
+        goto go_right;
+    }
+
+
     switch (key) {
         case 0b1000: {// KEY3 pressed, UP
+            go_up:
             if ((myChick->x + 7) < 293 && (myChick->y - 29) > -4) {
                 myChick->x += 7;
                 myChick->y -= 29;
@@ -444,6 +469,7 @@ void chickMove(int key, chick *myChick) {
             break;
         }
         case 0b0100: {// KEY2 pressed, DOWN
+            go_down:
             if ((myChick->x - 7) > 0 && (myChick->y + 29) < 206) {
                 myChick->x -= 7;
                 myChick->y += 29;
@@ -452,6 +478,7 @@ void chickMove(int key, chick *myChick) {
             break;
         }
         case 0b0010: {// KEY1 pressed, LEFT
+            go_left:
             if ((myChick->x - 29) > 0 && (myChick->y - 7) > -4) {
                 myChick->x -= 29;
                 myChick->y -= 7;
@@ -460,6 +487,7 @@ void chickMove(int key, chick *myChick) {
             break;
         }
         case 0b0001: {// KEY0 pressed, RIGHT
+            go_right:
             if ((myChick->x + 29) < 293 && (myChick->y + 7) < 206) {
                 myChick->x += 29;
                 myChick->y += 7;
@@ -469,6 +497,11 @@ void chickMove(int key, chick *myChick) {
         }
         default:;
     }
+
+    KEYBOARD_UP = false;
+    KEYBOARD_DOWN = false;
+    KEYBOARD_LEFT = false;
+    KEYBOARD_RIGHT = false;
 }
 
 // subroutine for modifying some car's location, as the car should be moving on the road
@@ -525,7 +558,7 @@ bool carHitTest(ROAD *myRoad, chick *myChick) {
         case 3: {
             myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 8;
             myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 113;
-            break;
+            break;//
         }
         case 4: {
             myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 5;

@@ -1,0 +1,2741 @@
+
+D:/OneDrive/ECE243/project/ReCrossy-Road/main.axf:     file format elf32-littlearm
+
+
+Disassembly of section .vectors:
+
+00000000 <__cs3_interrupt_vector>:
+   0:	18 f0 9f e5 18 f0 9f e5 18 f0 9f e5 18 f0 9f e5     ................
+  10:	18 f0 9f e5 18 f0 9f e5 18 f0 9f e5 18 f0 9f e5     ................
+  20:	5c 02 00 00 60 02 00 00 64 02 00 00 68 02 00 00     \...`...d...h...
+  30:	6c 02 00 00 58 19 00 00 b8 03 00 00 70 02 00 00     l...X.......p...
+
+Disassembly of section .text:
+
+00000040 <__cs3_reset_generic>:
+      40:	ea000026 	b	e0 <__cs3_start_asm_sim>
+
+00000044 <__cs3_start_c>:
+      44:	e59f608c 	ldr	r6, [pc, #140]	; d8 <__cs3_start_c+0x94>
+      48:	e3560000 	cmp	r6, #0
+      4c:	e92d4080 	push	{r7, lr}
+      50:	e2466001 	sub	r6, r6, #1
+      54:	0a00001e 	beq	d4 <__cs3_start_c+0x90>
+      58:	e59f507c 	ldr	r5, [pc, #124]	; dc <__cs3_start_c+0x98>
+      5c:	e3a00000 	mov	r0, #0
+      60:	e3a01000 	mov	r1, #0
+      64:	e515200c 	ldr	r2, [r5, #-12]
+      68:	e515e010 	ldr	lr, [r5, #-16]
+      6c:	e5154008 	ldr	r4, [r5, #-8]
+      70:	e15e0002 	cmp	lr, r2
+      74:	00822004 	addeq	r2, r2, r4
+      78:	0a000009 	beq	a4 <__cs3_start_c+0x60>
+      7c:	e3540000 	cmp	r4, #0
+      80:	0a000007 	beq	a4 <__cs3_start_c+0x60>
+      84:	e1a07002 	mov	r7, r2
+      88:	e1a0c002 	mov	r12, r2
+      8c:	e8be000c 	ldm	lr!, {r2, r3}
+      90:	e8ac000c 	stmia	r12!, {r2, r3}
+      94:	e067300c 	rsb	r3, r7, r12
+      98:	e1540003 	cmp	r4, r3
+      9c:	e1a0200c 	mov	r2, r12
+      a0:	1afffff9 	bne	8c <__cs3_start_c+0x48>
+      a4:	e515e004 	ldr	lr, [r5, #-4]
+      a8:	e35e0000 	cmp	lr, #0
+      ac:	11a03002 	movne	r3, r2
+      b0:	0a000003 	beq	c4 <__cs3_start_c+0x80>
+      b4:	e8a30003 	stmia	r3!, {r0, r1}
+      b8:	e062c003 	rsb	r12, r2, r3
+      bc:	e15e000c 	cmp	lr, r12
+      c0:	1afffffb 	bne	b4 <__cs3_start_c+0x70>
+      c4:	e2466001 	sub	r6, r6, #1
+      c8:	e3760001 	cmn	r6, #1
+      cc:	e2855014 	add	r5, r5, #20
+      d0:	1affffe3 	bne	64 <__cs3_start_c+0x20>
+      d4:	eb000606 	bl	18f4 <__cs3_premain>
+      d8:	00000001 	.word	0x00000001
+      dc:	00001a54 	.word	0x00001a54
+
+000000e0 <__cs3_start_asm_sim>:
+      e0:	e28f103c 	add	r1, pc, #60	; 0x3c
+      e4:	e3a00016 	mov	r0, #22
+      e8:	ef123456 	svc	0x00123456
+      ec:	e3500000 	cmp	r0, #0
+      f0:	ba000008 	blt	118 <__cs3_start_asm_sim+0x38>
+      f4:	e59f2028 	ldr	r2, [pc, #40]	; 124 <__cs3_heap_start_ptr>
+      f8:	e59fd01c 	ldr	sp, [pc, #28]	; 11c <__cs3_start_asm_sim+0x3c>
+      fc:	e5920008 	ldr	r0, [r2, #8]
+     100:	e3500000 	cmp	r0, #0
+     104:	11a0d000 	movne	sp, r0
+     108:	e59f1010 	ldr	r1, [pc, #16]	; 120 <__cs3_start_asm_sim+0x40>
+     10c:	e5920004 	ldr	r0, [r2, #4]
+     110:	e3500000 	cmp	r0, #0
+     114:	15810000 	strne	r0, [r1]
+     118:	eaffffc9 	b	44 <__cs3_start_c>
+     11c:	3ffffff8 	.word	0x3ffffff8
+     120:	0009f698 	.word	0x0009f698
+
+00000124 <__cs3_heap_start_ptr>:
+     124:	0009f6d0 	.word	0x0009f6d0
+
+00000128 <_start>:
+     128:	e51fd000 	ldr	sp, [pc, #-0]	; 130 <_start+0x8>
+     12c:	eaffffc4 	b	44 <__cs3_start_c>
+     130:	3ffffff8 	.word	0x3ffffff8
+
+00000134 <deregister_tm_clones>:
+     134:	e92d4008 	push	{r3, lr}
+     138:	e59f002c 	ldr	r0, [pc, #44]	; 16c <deregister_tm_clones+0x38>
+     13c:	e59f302c 	ldr	r3, [pc, #44]	; 170 <deregister_tm_clones+0x3c>
+     140:	e0603003 	rsb	r3, r0, r3
+     144:	e3530006 	cmp	r3, #6
+     148:	8a000001 	bhi	154 <deregister_tm_clones+0x20>
+     14c:	e8bd4008 	pop	{r3, lr}
+     150:	e12fff1e 	bx	lr
+     154:	e59f3018 	ldr	r3, [pc, #24]	; 174 <deregister_tm_clones+0x40>
+     158:	e3530000 	cmp	r3, #0
+     15c:	0afffffa 	beq	14c <deregister_tm_clones+0x18>
+     160:	e1a0e00f 	mov	lr, pc
+     164:	e12fff13 	bx	r3
+     168:	eafffff7 	b	14c <deregister_tm_clones+0x18>
+     16c:	0009f6a0 	.word	0x0009f6a0
+     170:	0009f6a3 	.word	0x0009f6a3
+     174:	00000000 	.word	0x00000000
+
+00000178 <register_tm_clones>:
+     178:	e92d4008 	push	{r3, lr}
+     17c:	e59f0034 	ldr	r0, [pc, #52]	; 1b8 <register_tm_clones+0x40>
+     180:	e59f3034 	ldr	r3, [pc, #52]	; 1bc <register_tm_clones+0x44>
+     184:	e0603003 	rsb	r3, r0, r3
+     188:	e1a03143 	asr	r3, r3, #2
+     18c:	e0833fa3 	add	r3, r3, r3, lsr #31
+     190:	e1b010c3 	asrs	r1, r3, #1
+     194:	1a000001 	bne	1a0 <register_tm_clones+0x28>
+     198:	e8bd4008 	pop	{r3, lr}
+     19c:	e12fff1e 	bx	lr
+     1a0:	e59f2018 	ldr	r2, [pc, #24]	; 1c0 <register_tm_clones+0x48>
+     1a4:	e3520000 	cmp	r2, #0
+     1a8:	0afffffa 	beq	198 <register_tm_clones+0x20>
+     1ac:	e1a0e00f 	mov	lr, pc
+     1b0:	e12fff12 	bx	r2
+     1b4:	eafffff7 	b	198 <register_tm_clones+0x20>
+     1b8:	0009f6a0 	.word	0x0009f6a0
+     1bc:	0009f6a0 	.word	0x0009f6a0
+     1c0:	00000000 	.word	0x00000000
+
+000001c4 <__do_global_dtors_aux>:
+     1c4:	e92d4010 	push	{r4, lr}
+     1c8:	e59f402c 	ldr	r4, [pc, #44]	; 1fc <__do_global_dtors_aux+0x38>
+     1cc:	e5d43000 	ldrb	r3, [r4]
+     1d0:	e3530000 	cmp	r3, #0
+     1d4:	1a000006 	bne	1f4 <__do_global_dtors_aux+0x30>
+     1d8:	ebffffd5 	bl	134 <deregister_tm_clones>
+     1dc:	e59f301c 	ldr	r3, [pc, #28]	; 200 <__do_global_dtors_aux+0x3c>
+     1e0:	e3530000 	cmp	r3, #0
+     1e4:	159f0018 	ldrne	r0, [pc, #24]	; 204 <__do_global_dtors_aux+0x40>
+     1e8:	1320f000 	nopne	{0}
+     1ec:	e3a03001 	mov	r3, #1
+     1f0:	e5c43000 	strb	r3, [r4]
+     1f4:	e8bd4010 	pop	{r4, lr}
+     1f8:	e12fff1e 	bx	lr
+     1fc:	0009f6a0 	.word	0x0009f6a0
+     200:	00000000 	.word	0x00000000
+     204:	000019e4 	.word	0x000019e4
+
+00000208 <frame_dummy>:
+     208:	e92d4008 	push	{r3, lr}
+     20c:	e59f3034 	ldr	r3, [pc, #52]	; 248 <frame_dummy+0x40>
+     210:	e3530000 	cmp	r3, #0
+     214:	159f0030 	ldrne	r0, [pc, #48]	; 24c <frame_dummy+0x44>
+     218:	159f1030 	ldrne	r1, [pc, #48]	; 250 <frame_dummy+0x48>
+     21c:	1320f000 	nopne	{0}
+     220:	e59f002c 	ldr	r0, [pc, #44]	; 254 <frame_dummy+0x4c>
+     224:	e5903000 	ldr	r3, [r0]
+     228:	e3530000 	cmp	r3, #0
+     22c:	0a000003 	beq	240 <frame_dummy+0x38>
+     230:	e59f3020 	ldr	r3, [pc, #32]	; 258 <frame_dummy+0x50>
+     234:	e3530000 	cmp	r3, #0
+     238:	11a0e00f 	movne	lr, pc
+     23c:	112fff13 	bxne	r3
+     240:	e8bd4008 	pop	{r3, lr}
+     244:	eaffffcb 	b	178 <register_tm_clones>
+     248:	00000000 	.word	0x00000000
+     24c:	000019e4 	.word	0x000019e4
+     250:	0009f6a4 	.word	0x0009f6a4
+     254:	00001a58 	.word	0x00001a58
+     258:	00000000 	.word	0x00000000
+
+0000025c <__cs3_reset>:
+
+    return;
+}
+
+// Define the remaining exception handlers
+void __attribute__((interrupt)) __cs3_reset(void) {
+     25c:	eafffffe 	b	25c <__cs3_reset>
+
+00000260 <__cs3_isr_undef>:
+    while (1);
+}
+
+void __attribute__((interrupt)) __cs3_isr_undef(void) {
+     260:	eafffffe 	b	260 <__cs3_isr_undef>
+
+00000264 <__cs3_isr_swi>:
+    while (1);
+}
+
+void __attribute__((interrupt)) __cs3_isr_swi(void) {
+     264:	eafffffe 	b	264 <__cs3_isr_swi>
+
+00000268 <__cs3_isr_pabort>:
+    while (1);
+}
+
+void __attribute__((interrupt)) __cs3_isr_pabort(void) {
+     268:	eafffffe 	b	268 <__cs3_isr_pabort>
+
+0000026c <__cs3_isr_dabort>:
+    while (1);
+}
+
+void __attribute__((interrupt)) __cs3_isr_dabort(void) {
+     26c:	eafffffe 	b	26c <__cs3_isr_dabort>
+
+00000270 <__cs3_isr_fiq>:
+    while (1);
+}
+
+void __attribute__((interrupt)) __cs3_isr_fiq(void) {
+     270:	eafffffe 	b	270 <__cs3_isr_fiq>
+
+00000274 <set_A9_IRQ_stack>:
+{
+    int stack, mode;
+    stack = A9_ONCHIP_END - 7;		// top of A9 onchip memory, aligned to 8 bytes
+    /* change processor to IRQ mode with interrupts disabled */
+    mode = INT_DISABLE | IRQ_MODE;
+    asm("msr cpsr, %[ps]" : : [ps] "r" (mode));
+     274:	e3a030d2 	mov	r3, #210	; 0xd2
+     278:	e129f003 	msr	CPSR_fc, r3
+    /* set banked stack pointer */
+    asm("mov sp, %[ps]" : : [ps] "r" (stack));
+     27c:	e3e03007 	mvn	r3, #7
+     280:	e1a0d003 	mov	sp, r3
+
+    /* go back to SVC mode before executing subroutine return! */
+    mode = INT_DISABLE | SVC_MODE;
+    asm("msr cpsr, %[ps]" : : [ps] "r" (mode));
+     284:	e3a030d3 	mov	r3, #211	; 0xd3
+     288:	e129f003 	msr	CPSR_fc, r3
+     28c:	e12fff1e 	bx	lr
+
+00000290 <enable_A9_interrupts>:
+ * Turn on interrupts in the ARM processor
+*/
+void enable_A9_interrupts(void)
+{
+    int status = SVC_MODE | INT_ENABLE;
+    asm("msr cpsr,%[ps]" : : [ps]"r"(status));
+     290:	e3a03053 	mov	r3, #83	; 0x53
+     294:	e129f003 	msr	CPSR_fc, r3
+     298:	e12fff1e 	bx	lr
+
+0000029c <config_KEYs>:
+}
+
+/* setup the KEY interrupts in the FPGA */
+void config_KEYs() {
+    volatile int *KEY_ptr = (int *) KEY_BASE; // pushbutton KEY address
+    *(KEY_ptr + 2) = 0x3;                    // enable interrupts for KEY[1]
+     29c:	e3a03000 	mov	r3, #0
+     2a0:	e34f3f20 	movt	r3, #65312	; 0xff20
+     2a4:	e3a02003 	mov	r2, #3
+     2a8:	e5832058 	str	r2, [r3, #88]	; 0x58
+     2ac:	e12fff1e 	bx	lr
+
+000002b0 <config_PS2>:
+}
+/* setup the PS/2 interrupts */
+void config_PS2() {
+    volatile int * PS2_ptr = (int *)PS2_BASE; // PS/2 port address
+
+    *(PS2_ptr) = 0xFF; /* reset */
+     2b0:	e3a03000 	mov	r3, #0
+     2b4:	e34f3f20 	movt	r3, #65312	; 0xff20
+     2b8:	e3a020ff 	mov	r2, #255	; 0xff
+     2bc:	e5832100 	str	r2, [r3, #256]	; 0x100
+    *(PS2_ptr + 1) =
+     2c0:	e3a02001 	mov	r2, #1
+     2c4:	e5832104 	str	r2, [r3, #260]	; 0x104
+     2c8:	e12fff1e 	bx	lr
+
+000002cc <pushbutton_ISR>:
+            0x1; /* write to the PS/2 Control register to enable interrupts */
+}
+void pushbutton_ISR(void) {
+    volatile int *KEY_ptr = (int *) KEY_BASE;
+    int press;
+    press = *(KEY_ptr + 3); // read the pushbutton interrupt register
+     2cc:	e3a03000 	mov	r3, #0
+     2d0:	e34f3f20 	movt	r3, #65312	; 0xff20
+     2d4:	e593205c 	ldr	r2, [r3, #92]	; 0x5c
+    *(KEY_ptr + 3) = press; // Clear the interrupt
+     2d8:	e583205c 	str	r2, [r3, #92]	; 0x5c
+    key_dir ^= 1; // Toggle key_dir value
+     2dc:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     2e0:	e3403009 	movt	r3, #9
+     2e4:	e5932000 	ldr	r2, [r3]
+     2e8:	e2222001 	eor	r2, r2, #1
+     2ec:	e5832000 	str	r2, [r3]
+     2f0:	e12fff1e 	bx	lr
+
+000002f4 <PS2_ISR>:
+
+void PS2_ISR(void) {
+    volatile int * PS2_ptr = (int *) 0xFF200100;		// PS/2 port address
+    int PS2_data, RAVAIL;
+
+    PS2_data = *(PS2_ptr);									// read the Data register in the PS/2 port
+     2f4:	e3a03000 	mov	r3, #0
+     2f8:	e34f3f20 	movt	r3, #65312	; 0xff20
+     2fc:	e5932100 	ldr	r2, [r3, #256]	; 0x100
+    RAVAIL = (PS2_data & 0xFFFF0000) >> 16;			// extract the RAVAIL field
+    if (RAVAIL > 0)
+     300:	e1b03822 	lsrs	r3, r2, #16
+     304:	012fff1e 	bxeq	lr
+    {
+        /* always save the last three bytes received */
+        byte1 = byte2;
+     308:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     30c:	e3403009 	movt	r3, #9
+     310:	e5d31005 	ldrb	r1, [r3, #5]
+     314:	e5c31004 	strb	r1, [r3, #4]
+        byte2 = byte3;
+     318:	e5d31006 	ldrb	r1, [r3, #6]
+     31c:	e5c31005 	strb	r1, [r3, #5]
+        byte3 = PS2_data & 0xFF;
+     320:	e6ef2072 	uxtb	r2, r2
+     324:	e5c32006 	strb	r2, [r3, #6]
+        if ((byte2 == (char) 0xE0) && (byte3 == (char) 0x75)) {
+     328:	e35100e0 	cmp	r1, #224	; 0xe0
+     32c:	112fff1e 	bxne	lr
+     330:	e3520075 	cmp	r2, #117	; 0x75
+     334:	1a000004 	bne	34c <PS2_ISR+0x58>
+            KEYBOARD_UP = true;
+     338:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     33c:	e3403009 	movt	r3, #9
+     340:	e3a02001 	mov	r2, #1
+     344:	e5c32007 	strb	r2, [r3, #7]
+     348:	e12fff1e 	bx	lr
+        } else if((byte2 == (char) 0xE0) && (byte3 == (char) 0x72)){
+     34c:	e3520072 	cmp	r2, #114	; 0x72
+     350:	1a000004 	bne	368 <PS2_ISR+0x74>
+            KEYBOARD_DOWN = true;
+     354:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     358:	e3403009 	movt	r3, #9
+     35c:	e3a02001 	mov	r2, #1
+     360:	e5c32008 	strb	r2, [r3, #8]
+     364:	e12fff1e 	bx	lr
+        } else if((byte2 == (char) 0xE0) && (byte3 == (char) 0x6B)){
+     368:	e352006b 	cmp	r2, #107	; 0x6b
+     36c:	1a000004 	bne	384 <PS2_ISR+0x90>
+            KEYBOARD_LEFT = true;
+     370:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     374:	e3403009 	movt	r3, #9
+     378:	e3a02001 	mov	r2, #1
+     37c:	e5c32009 	strb	r2, [r3, #9]
+     380:	e12fff1e 	bx	lr
+        } else if((byte2 == (char) 0xE0) && (byte3 == (char) 0x74)){
+     384:	e3520074 	cmp	r2, #116	; 0x74
+     388:	1a000004 	bne	3a0 <PS2_ISR+0xac>
+            KEYBOARD_RIGHT = true;
+     38c:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     390:	e3403009 	movt	r3, #9
+     394:	e3a02001 	mov	r2, #1
+     398:	e5c3200a 	strb	r2, [r3, #10]
+     39c:	e12fff1e 	bx	lr
+        } else if((byte2 == (char) 0xE0) && (byte3 == (char) 0x69)){
+     3a0:	e3520069 	cmp	r2, #105	; 0x69
+            KEYBOARD_RESTART = true;
+     3a4:	030f36bc 	movweq	r3, #63164	; 0xf6bc
+     3a8:	03403009 	movteq	r3, #9
+     3ac:	03a02001 	moveq	r2, #1
+     3b0:	05c3200b 	strbeq	r2, [r3, #11]
+     3b4:	e12fff1e 	bx	lr
+
+000003b8 <__cs3_isr_irq>:
+
+void PS2_ISR();
+
+// Define the IRQ exception handler
+void __attribute__ ((interrupt)) __cs3_isr_irq (void)
+{
+     3b8:	e24ee004 	sub	lr, lr, #4
+     3bc:	e92d500f 	push	{r0, r1, r2, r3, r12, lr}
+    // Read the ICCIAR from the processor interface
+    int address = MPCORE_GIC_CPUIF + ICCIAR;
+    int int_ID = *((int *) address);
+     3c0:	e3e03a13 	mvn	r3, #77824	; 0x13000
+
+    if (int_ID == PS2_IRQ)				// check if interrupt is from the PS/2
+     3c4:	e5133ef3 	ldr	r3, [r3, #-3827]	; 0xfffff10d
+     3c8:	e353004f 	cmp	r3, #79	; 0x4f
+     3cc:	1a000004 	bne	3e4 <__cs3_isr_irq+0x2c>
+        PS2_ISR ();
+     3d0:	ebffffc7 	bl	2f4 <PS2_ISR>
+    else
+        while (1);									// if unexpected, then halt
+
+    // Write to the End of Interrupt Register (ICCEOIR)
+    address = MPCORE_GIC_CPUIF + ICCEOIR;
+    *((int *) address) = int_ID;
+     3d4:	e3a0204f 	mov	r2, #79	; 0x4f
+     3d8:	e3e03a13 	mvn	r3, #77824	; 0x13000
+     3dc:	e5032eef 	str	r2, [r3, #-3823]	; 0xfffff111
+     3e0:	e8fd900f 	ldm	sp!, {r0, r1, r2, r3, r12, pc}^
+     3e4:	eafffffe 	b	3e4 <__cs3_isr_irq+0x2c>
+
+000003e8 <hw_write_bits>:
+    address = MPCORE_GIC_DIST + addr_offset;
+    hw_write_bits((int *) address, 0x1 << (int_ID & 0x1f), value);
+}
+
+void hw_write_bits(volatile int * addr, volatile int unmask, volatile int value)
+{
+     3e8:	e24dd008 	sub	sp, sp, #8
+     3ec:	e58d1004 	str	r1, [sp, #4]
+     3f0:	e58d2000 	str	r2, [sp]
+    *addr = ((~unmask) & *addr) | value;
+     3f4:	e59d1004 	ldr	r1, [sp, #4]
+     3f8:	e5903000 	ldr	r3, [r0]
+     3fc:	e59d2000 	ldr	r2, [sp]
+     400:	e1c33001 	bic	r3, r3, r1
+     404:	e1833002 	orr	r3, r3, r2
+     408:	e5803000 	str	r3, [r0]
+}
+     40c:	e28dd008 	add	sp, sp, #8
+     410:	e12fff1e 	bx	lr
+
+00000414 <config_interrupt>:
+
+/*
+ * Configure registers in the GIC for individual interrupt IDs.
+*/
+void config_interrupt (int int_ID, int CPU_target)
+{
+     414:	e92d4010 	push	{r4, lr}
+     418:	e1a04000 	mov	r4, r0
+     * addr_offet = #ICDIPTR + n
+     * value = CPU_target << ((int_ID & 0x3) * 8)
+     */
+    n = (int_ID >> 2) << 2;
+    addr_offset = ICDIPTR + n;
+    value = CPU_target << ((int_ID & 0x3) << 3);
+     41c:	e2003003 	and	r3, r0, #3
+     420:	e1a03183 	lsl	r3, r3, #3
+    /* Set Interrupt Processor Targets Register (ICDIPTRn) to cpu0.
+     * n = integer_div(int_ID / 4) * 4
+     * addr_offet = #ICDIPTR + n
+     * value = CPU_target << ((int_ID & 0x3) * 8)
+     */
+    n = (int_ID >> 2) << 2;
+     424:	e3c00003 	bic	r0, r0, #3
+    addr_offset = ICDIPTR + n;
+    value = CPU_target << ((int_ID & 0x3) << 3);
+     428:	e1a02311 	lsl	r2, r1, r3
+
+    /* Now that we know the register address and value, we need to set the correct bits in
+     * the GIC register, without changing the other bits */
+    address = MPCORE_GIC_DIST + addr_offset;
+    hw_write_bits((int *) address, 0xff << ((int_ID & 0x3) << 3), value);
+     42c:	e2400b4a 	sub	r0, r0, #75776	; 0x12800
+     430:	e3a010ff 	mov	r1, #255	; 0xff
+     434:	e1a01311 	lsl	r1, r1, r3
+     438:	ebffffea 	bl	3e8 <hw_write_bits>
+     * n = (integer_div(in_ID / 32) * 4
+     * addr_offset = 0x100 + n
+     * value = enable << (int_ID & 0x1F) */
+    n = (int_ID >> 5) << 2;
+    addr_offset = ICDISER + n;
+    value = 0x1 << (int_ID & 0x1f);
+     43c:	e204301f 	and	r3, r4, #31
+     440:	e3a02001 	mov	r2, #1
+     444:	e1a02312 	lsl	r2, r2, r3
+
+    /* Set Interrupt Set-Enable Registers (ICDISERn).
+     * n = (integer_div(in_ID / 32) * 4
+     * addr_offset = 0x100 + n
+     * value = enable << (int_ID & 0x1F) */
+    n = (int_ID >> 5) << 2;
+     448:	e1a002c4 	asr	r0, r4, #5
+     44c:	e1a00100 	lsl	r0, r0, #2
+    addr_offset = ICDISER + n;
+     450:	e2800c01 	add	r0, r0, #256	; 0x100
+    value = 0x1 << (int_ID & 0x1f);
+    /* Now that we know the register address and value, we need to set the correct bits in
+     * the GIC register, without changing the other bits */
+    address = MPCORE_GIC_DIST + addr_offset;
+    hw_write_bits((int *) address, 0x1 << (int_ID & 0x1f), value);
+     454:	e2400a13 	sub	r0, r0, #77824	; 0x13000
+     458:	e1a01002 	mov	r1, r2
+     45c:	ebffffe1 	bl	3e8 <hw_write_bits>
+     460:	e8bd8010 	pop	{r4, pc}
+
+00000464 <config_GIC>:
+
+/*
+ * Configure the Generic Interrupt Controller (GIC)
+*/
+void config_GIC(void)
+{
+     464:	e92d4008 	push	{r3, lr}
+    int address;	// used to calculate register addresses
+
+    /* enable some examples of interrupts */
+    config_interrupt (PS2_IRQ, CPU0);
+     468:	e3a0004f 	mov	r0, #79	; 0x4f
+     46c:	e3a01001 	mov	r1, #1
+     470:	ebffffe7 	bl	414 <config_interrupt>
+
+    // Set Interrupt Priority Mask Register (ICCPMR). Enable interrupts for lowest priority
+    address = MPCORE_GIC_CPUIF + ICCPMR;
+    *((int *) address) = 0xFFFF;
+     474:	e3e02a13 	mvn	r2, #77824	; 0x13000
+     478:	e30f3fff 	movw	r3, #65535	; 0xffff
+     47c:	e5023efb 	str	r3, [r2, #-3835]	; 0xfffff105
+
+    // Set CPU Interface Control Register (ICCICR). Enable signaling of interrupts
+    address = MPCORE_GIC_CPUIF + ICCICR;
+    *((int *) address) = ENABLE;
+     480:	e3a03001 	mov	r3, #1
+     484:	e5023eff 	str	r3, [r2, #-3839]	; 0xfffff101
+
+    // Configure the Distributor Control Register (ICDDCR) to send pending interrupts to CPUs
+    address = MPCORE_GIC_DIST + ICDDCR;
+    *((int *) address) = ENABLE;
+     488:	e3e02a12 	mvn	r2, #73728	; 0x12000
+     48c:	e5023fff 	str	r3, [r2, #-4095]	; 0xfffff001
+     490:	e8bd8008 	pop	{r3, pc}
+
+00000494 <plot_pixel>:
+// subroutine for plotting text on the screen
+void VGA_text(int x, int y, char *text_ptr);
+
+// subroutine for plotting a pixel on the screen
+void plot_pixel(int x, int y, short int line_color) {
+    *(short *) (pixel_buffer_start + (y << 10) + (x << 1)) = line_color;
+     494:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     498:	e3403009 	movt	r3, #9
+     49c:	e593300c 	ldr	r3, [r3, #12]
+     4a0:	e1a00080 	lsl	r0, r0, #1
+     4a4:	e0831501 	add	r1, r3, r1, lsl #10
+     4a8:	e18120b0 	strh	r2, [r1, r0]
+     4ac:	e12fff1e 	bx	lr
+
+000004b0 <VGA_text>:
+}
+
+// subroutine for plotting text on the screen
+void VGA_text(int x, int y, char *text_ptr) {
+    /* assume that the text string fits on one line */
+    int offset = (y << 7) + x;
+     4b0:	e0801381 	add	r1, r0, r1, lsl #7
+
+    while (*(text_ptr)) // while it hasn't reach the null-terminating char in the string
+     4b4:	e5d23000 	ldrb	r3, [r2]
+     4b8:	e3530000 	cmp	r3, #0
+     4bc:	012fff1e 	bxeq	lr
+    {
+        // write to the character buffer
+        *(character_buffer + offset) = *(text_ptr);
+     4c0:	e301ca60 	movw	r12, #6752	; 0x1a60
+     4c4:	e340c000 	movt	r12, #0
+     4c8:	e59c0000 	ldr	r0, [r12]
+     4cc:	e7c03001 	strb	r3, [r0, r1]
+        ++text_ptr;
+        ++offset;
+     4d0:	e2811001 	add	r1, r1, #1
+// subroutine for plotting text on the screen
+void VGA_text(int x, int y, char *text_ptr) {
+    /* assume that the text string fits on one line */
+    int offset = (y << 7) + x;
+
+    while (*(text_ptr)) // while it hasn't reach the null-terminating char in the string
+     4d4:	e5f23001 	ldrb	r3, [r2, #1]!
+     4d8:	e3530000 	cmp	r3, #0
+     4dc:	1afffff9 	bne	4c8 <VGA_text+0x18>
+     4e0:	e12fff1e 	bx	lr
+
+000004e4 <swap>:
+}
+
+
+// function for swapping two intergers
+void swap(int *left, int *right) {
+    int temp = *left;
+     4e4:	e5903000 	ldr	r3, [r0]
+    *left = *right;
+     4e8:	e5912000 	ldr	r2, [r1]
+     4ec:	e5802000 	str	r2, [r0]
+    *right = temp;
+     4f0:	e5813000 	str	r3, [r1]
+     4f4:	e12fff1e 	bx	lr
+
+000004f8 <plot_line>:
+}
+
+// subroutine for plotting a line on the screen (currently not used in this program)
+void plot_line(int x0, int y0, int x1, int y1, short int line_color) {
+     4f8:	e92d4ff0 	push	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
+     4fc:	e24dd014 	sub	sp, sp, #20
+     500:	e58d000c 	str	r0, [sp, #12]
+     504:	e58d1008 	str	r1, [sp, #8]
+     508:	e58d2004 	str	r2, [sp, #4]
+     50c:	e58d3000 	str	r3, [sp]
+     510:	e1dda3f8 	ldrsh	r10, [sp, #56]	; 0x38
+    bool is_steep = abs(y1 - y0) > abs(x1 - x0);
+     514:	e0613003 	rsb	r3, r1, r3
+     518:	e3530000 	cmp	r3, #0
+     51c:	b2633000 	rsblt	r3, r3, #0
+     520:	e0602002 	rsb	r2, r0, r2
+     524:	e0228fc2 	eor	r8, r2, r2, asr #31
+     528:	e0488fc2 	sub	r8, r8, r2, asr #31
+     52c:	e1530008 	cmp	r3, r8
+     530:	d3a08000 	movle	r8, #0
+     534:	c3a08001 	movgt	r8, #1
+    if (is_steep) {
+     538:	e3580000 	cmp	r8, #0
+     53c:	0a000005 	beq	558 <plot_line+0x60>
+        swap(&x0, &y0);
+     540:	e28d000c 	add	r0, sp, #12
+     544:	e28d1008 	add	r1, sp, #8
+     548:	ebffffe5 	bl	4e4 <swap>
+        swap(&x1, &y1);
+     54c:	e28d0004 	add	r0, sp, #4
+     550:	e1a0100d 	mov	r1, sp
+     554:	ebffffe2 	bl	4e4 <swap>
+    }
+    if (x0 > x1) {
+     558:	e59d3004 	ldr	r3, [sp, #4]
+     55c:	e59d200c 	ldr	r2, [sp, #12]
+     560:	e1520003 	cmp	r2, r3
+     564:	da000005 	ble	580 <plot_line+0x88>
+        swap(&x0, &x1);
+     568:	e28d000c 	add	r0, sp, #12
+     56c:	e28d1004 	add	r1, sp, #4
+     570:	ebffffdb 	bl	4e4 <swap>
+        swap(&y0, &y1);
+     574:	e28d0008 	add	r0, sp, #8
+     578:	e1a0100d 	mov	r1, sp
+     57c:	ebffffd8 	bl	4e4 <swap>
+    }
+    int delta_x = x1 - x0;
+     580:	e59d3004 	ldr	r3, [sp, #4]
+     584:	e59d500c 	ldr	r5, [sp, #12]
+     588:	e0659003 	rsb	r9, r5, r3
+    int delta_y = abs(y1 - y0);
+     58c:	e59d2000 	ldr	r2, [sp]
+     590:	e59d6008 	ldr	r6, [sp, #8]
+     594:	e0667002 	rsb	r7, r6, r2
+     598:	e3570000 	cmp	r7, #0
+     59c:	b2677000 	rsblt	r7, r7, #0
+    int error = -(delta_x / 2);
+     5a0:	e0894fa9 	add	r4, r9, r9, lsr #31
+     5a4:	e1a040c4 	asr	r4, r4, #1
+     5a8:	e2644000 	rsb	r4, r4, #0
+    int y = y0;
+    int y_step;
+    if (y0 < y1) {
+        y_step = 1;
+     5ac:	e1520006 	cmp	r2, r6
+     5b0:	d3e0b000 	mvnle	r11, #0
+     5b4:	c3a0b001 	movgt	r11, #1
+    } else {
+        y_step = -1;
+    }
+
+    for (int x = x0; x <= x1; x++) {
+     5b8:	e1530005 	cmp	r3, r5
+     5bc:	ba00000d 	blt	5f8 <plot_line+0x100>
+        if (is_steep) {
+     5c0:	e3580000 	cmp	r8, #0
+            plot_pixel(y, x, line_color);
+     5c4:	11a00006 	movne	r0, r6
+     5c8:	11a01005 	movne	r1, r5
+        } else {
+            plot_pixel(x, y, line_color);
+     5cc:	01a00005 	moveq	r0, r5
+     5d0:	01a01006 	moveq	r1, r6
+     5d4:	e1a0200a 	mov	r2, r10
+     5d8:	ebffffad 	bl	494 <plot_pixel>
+        }
+        error += delta_y;
+        if (error >= 0) {
+     5dc:	e0944007 	adds	r4, r4, r7
+            y += y_step;
+     5e0:	5086600b 	addpl	r6, r6, r11
+            error -= delta_x;
+     5e4:	50694004 	rsbpl	r4, r9, r4
+        y_step = 1;
+    } else {
+        y_step = -1;
+    }
+
+    for (int x = x0; x <= x1; x++) {
+     5e8:	e2855001 	add	r5, r5, #1
+     5ec:	e59d3004 	ldr	r3, [sp, #4]
+     5f0:	e1530005 	cmp	r3, r5
+     5f4:	aafffff1 	bge	5c0 <plot_line+0xc8>
+        if (error >= 0) {
+            y += y_step;
+            error -= delta_x;
+        }
+    }
+}
+     5f8:	e28dd014 	add	sp, sp, #20
+     5fc:	e8bd8ff0 	pop	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
+
+00000600 <plot_image>:
+
+
+// subroutine for plotting an image given a specific location and image array
+void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
+     600:	e92d4ff0 	push	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
+     604:	e24dd01c 	sub	sp, sp, #28
+     608:	e58d000c 	str	r0, [sp, #12]
+     60c:	e58d2010 	str	r2, [sp, #16]
+     610:	e58d3004 	str	r3, [sp, #4]
+     614:	e59d3040 	ldr	r3, [sp, #64]	; 0x40
+
+    int i = 0; // index for pixel colours in the image array
+
+    for (unsigned y = 0; y < height; y++) {
+     618:	e3530000 	cmp	r3, #0
+     61c:	0a00002d 	beq	6d8 <plot_image+0xd8>
+     620:	e1a06001 	mov	r6, r1
+    }
+}
+
+
+// subroutine for plotting an image given a specific location and image array
+void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
+     624:	e0833001 	add	r3, r3, r1
+     628:	e58d3008 	str	r3, [sp, #8]
+
+    int i = 0; // index for pixel colours in the image array
+     62c:	e3a0b000 	mov	r11, #0
+    }
+}
+
+
+// subroutine for plotting an image given a specific location and image array
+void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
+     630:	e59d2004 	ldr	r2, [sp, #4]
+     634:	e0828000 	add	r8, r2, r0
+            int plotX = initialX + x;
+            int plotY = initialY + y;
+
+            // check for magenta, which is selected as a substitute of the alpha(transparent) colour
+            // when the pixel is out of bound, ignore it
+            if (imageArray[i] != 0b1111100000011111 && plotX >= 0 && plotY >= 0 && plotX < 320 && plotY < 240)
+     638:	e30f781f 	movw	r7, #63519	; 0xf81f
+     63c:	e300913f 	movw	r9, #319	; 0x13f
+    }
+}
+
+
+// subroutine for plotting an image given a specific location and image array
+void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
+     640:	e2423001 	sub	r3, r2, #1
+     644:	e58d3014 	str	r3, [sp, #20]
+     648:	ea000018 	b	6b0 <plot_image+0xb0>
+            int plotX = initialX + x;
+            int plotY = initialY + y;
+
+            // check for magenta, which is selected as a substitute of the alpha(transparent) colour
+            // when the pixel is out of bound, ignore it
+            if (imageArray[i] != 0b1111100000011111 && plotX >= 0 && plotY >= 0 && plotX < 320 && plotY < 240)
+     64c:	e5b52004 	ldr	r2, [r5, #4]!
+     650:	e1520007 	cmp	r2, r7
+     654:	0a00000b 	beq	688 <plot_image+0x88>
+
+    int i = 0; // index for pixel colours in the image array
+
+    for (unsigned y = 0; y < height; y++) {
+        for (unsigned x = 0; x < width; x++) {
+            int plotX = initialX + x;
+     658:	e1a00004 	mov	r0, r4
+            int plotY = initialY + y;
+     65c:	e1a01006 	mov	r1, r6
+
+            // check for magenta, which is selected as a substitute of the alpha(transparent) colour
+            // when the pixel is out of bound, ignore it
+            if (imageArray[i] != 0b1111100000011111 && plotX >= 0 && plotY >= 0 && plotX < 320 && plotY < 240)
+     660:	e3540000 	cmp	r4, #0
+     664:	b3a03000 	movlt	r3, #0
+     668:	a20a3001 	andge	r3, r10, #1
+     66c:	e3530000 	cmp	r3, #0
+     670:	0a000004 	beq	688 <plot_image+0x88>
+     674:	e1540009 	cmp	r4, r9
+     678:	d35600ef 	cmple	r6, #239	; 0xef
+     67c:	ca000001 	bgt	688 <plot_image+0x88>
+                plot_pixel(plotX, plotY, imageArray[i]);
+     680:	e6bf2072 	sxth	r2, r2
+     684:	ebffff82 	bl	494 <plot_pixel>
+     688:	e2844001 	add	r4, r4, #1
+void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
+
+    int i = 0; // index for pixel colours in the image array
+
+    for (unsigned y = 0; y < height; y++) {
+        for (unsigned x = 0; x < width; x++) {
+     68c:	e1540008 	cmp	r4, r8
+     690:	1affffed 	bne	64c <plot_image+0x4c>
+    }
+}
+
+
+// subroutine for plotting an image given a specific location and image array
+void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
+     694:	e28bb001 	add	r11, r11, #1
+     698:	e59d2014 	ldr	r2, [sp, #20]
+     69c:	e08bb002 	add	r11, r11, r2
+     6a0:	e2866001 	add	r6, r6, #1
+
+    int i = 0; // index for pixel colours in the image array
+
+    for (unsigned y = 0; y < height; y++) {
+     6a4:	e59d3008 	ldr	r3, [sp, #8]
+     6a8:	e1560003 	cmp	r6, r3
+     6ac:	0a000009 	beq	6d8 <plot_image+0xd8>
+        for (unsigned x = 0; x < width; x++) {
+     6b0:	e59d2004 	ldr	r2, [sp, #4]
+     6b4:	e3520000 	cmp	r2, #0
+     6b8:	0afffff8 	beq	6a0 <plot_image+0xa0>
+    }
+}
+
+
+// subroutine for plotting an image given a specific location and image array
+void plot_image(int initialX, int initialY, int imageArray[], unsigned width, unsigned height) {
+     6bc:	e24b5001 	sub	r5, r11, #1
+     6c0:	e59d3010 	ldr	r3, [sp, #16]
+     6c4:	e0835105 	add	r5, r3, r5, lsl #2
+     6c8:	e59d400c 	ldr	r4, [sp, #12]
+            int plotX = initialX + x;
+            int plotY = initialY + y;
+
+            // check for magenta, which is selected as a substitute of the alpha(transparent) colour
+            // when the pixel is out of bound, ignore it
+            if (imageArray[i] != 0b1111100000011111 && plotX >= 0 && plotY >= 0 && plotX < 320 && plotY < 240)
+     6cc:	e1e0a006 	mvn	r10, r6
+     6d0:	e1a0afaa 	lsr	r10, r10, #31
+     6d4:	eaffffdc 	b	64c <plot_image+0x4c>
+                plot_pixel(plotX, plotY, imageArray[i]);
+
+            i++; // switch to the next pixel colour
+        }
+    }
+}
+     6d8:	e28dd01c 	add	sp, sp, #28
+     6dc:	e8bd8ff0 	pop	{r4, r5, r6, r7, r8, r9, r10, r11, pc}
+
+000006e0 <plot_car_on_road>:
+void plot_road(ROAD *myRoad) {
+    plot_image(0, myRoad->initialY, image_road_320x120, 320, 120);
+}
+
+// subroutine for plotting a car's image onto the screen
+void plot_car_on_road(ROAD *myRoad) {
+     6e0:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+     6e4:	e24dd00c 	sub	sp, sp, #12
+    plot_image(myRoad->carOnRoad.x, myRoad->carOnRoad.y, myRoad->carOnRoad.carImage,
+     6e8:	e590c008 	ldr	r12, [r0, #8]
+     6ec:	e590100c 	ldr	r1, [r0, #12]
+     6f0:	e5902020 	ldr	r2, [r0, #32]
+     6f4:	e5903014 	ldr	r3, [r0, #20]
+     6f8:	e5900018 	ldr	r0, [r0, #24]
+     6fc:	e58d0000 	str	r0, [sp]
+     700:	e1a0000c 	mov	r0, r12
+     704:	ebffffbd 	bl	600 <plot_image>
+               (unsigned int) myRoad->carOnRoad.imageWidth,
+               (unsigned int) myRoad->carOnRoad.imageHeight);
+}
+     708:	e28dd00c 	add	sp, sp, #12
+     70c:	e8bd8000 	ldmfd	sp!, {pc}
+
+00000710 <plot_road>:
+// subroutine for plotting the chicken on the screen
+// will select the correct image according to the chicken's current facing
+void plot_chicken(chick *myChick);
+
+// subroutine for plotting a road's image onto the screen
+void plot_road(ROAD *myRoad) {
+     710:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+     714:	e24dd00c 	sub	sp, sp, #12
+    plot_image(0, myRoad->initialY, image_road_320x120, 320, 120);
+     718:	e5901000 	ldr	r1, [r0]
+     71c:	e3a03078 	mov	r3, #120	; 0x78
+     720:	e58d3000 	str	r3, [sp]
+     724:	e3a00000 	mov	r0, #0
+     728:	e59f200c 	ldr	r2, [pc, #12]	; 73c <plot_road+0x2c>
+     72c:	e3a03d05 	mov	r3, #320	; 0x140
+     730:	ebffffb2 	bl	600 <plot_image>
+}
+     734:	e28dd00c 	add	sp, sp, #12
+     738:	e8bd8000 	ldmfd	sp!, {pc}
+     73c:	00001a64 	.word	0x00001a64
+
+00000740 <clear_screen>:
+        }
+    }
+}
+
+// subroutine for clearing the whole screen by writing black to every pixel
+void clear_screen() {
+     740:	e92d4070 	push	{r4, r5, r6, lr}
+    for (int y = 0; y < 240; y++) {
+     744:	e3a05000 	mov	r5, #0
+        }
+    }
+}
+
+// subroutine for clearing the whole screen by writing black to every pixel
+void clear_screen() {
+     748:	e1a06005 	mov	r6, r5
+     74c:	ea000009 	b	778 <clear_screen+0x38>
+    for (int y = 0; y < 240; y++) {
+        for (int x = 0; x < 320; x++) {
+            plot_pixel(x, y, 0);
+     750:	e1a00004 	mov	r0, r4
+     754:	e1a01005 	mov	r1, r5
+     758:	e1a02006 	mov	r2, r6
+     75c:	ebffff4c 	bl	494 <plot_pixel>
+}
+
+// subroutine for clearing the whole screen by writing black to every pixel
+void clear_screen() {
+    for (int y = 0; y < 240; y++) {
+        for (int x = 0; x < 320; x++) {
+     760:	e2844001 	add	r4, r4, #1
+     764:	e3540d05 	cmp	r4, #320	; 0x140
+     768:	1afffff8 	bne	750 <clear_screen+0x10>
+    }
+}
+
+// subroutine for clearing the whole screen by writing black to every pixel
+void clear_screen() {
+    for (int y = 0; y < 240; y++) {
+     76c:	e2855001 	add	r5, r5, #1
+     770:	e35500f0 	cmp	r5, #240	; 0xf0
+     774:	08bd8070 	popeq	{r4, r5, r6, pc}
+        }
+    }
+}
+
+// subroutine for clearing the whole screen by writing black to every pixel
+void clear_screen() {
+     778:	e1a04006 	mov	r4, r6
+     77c:	eafffff3 	b	750 <clear_screen+0x10>
+
+00000780 <wait_for_vsync>:
+bool wait_for_vsync() {
+    // register for storing the plotting status
+    register int status;
+
+    // write to switch the front&back VGA buffer
+    *pixel_ctrl_ptr = 1;
+     780:	e30739c8 	movw	r3, #31176	; 0x79c8
+     784:	e3403002 	movt	r3, #2
+     788:	e5132764 	ldr	r2, [r3, #-1892]	; 0xfffff89c
+     78c:	e3a01001 	mov	r1, #1
+     790:	e5821000 	str	r1, [r2]
+
+    // keep getting the plotting status until the plotting is finished
+    // which is denoted by status "1"
+    status = *(pixel_ctrl_ptr + 3);
+     794:	e5132764 	ldr	r2, [r3, #-1892]	; 0xfffff89c
+     798:	e592300c 	ldr	r3, [r2, #12]
+    while ((status & 0x01) != 0) {
+     79c:	e3130001 	tst	r3, #1
+     7a0:	0a000002 	beq	7b0 <wait_for_vsync+0x30>
+        status = *(pixel_ctrl_ptr + 3);
+     7a4:	e592300c 	ldr	r3, [r2, #12]
+    *pixel_ctrl_ptr = 1;
+
+    // keep getting the plotting status until the plotting is finished
+    // which is denoted by status "1"
+    status = *(pixel_ctrl_ptr + 3);
+    while ((status & 0x01) != 0) {
+     7a8:	e3130001 	tst	r3, #1
+     7ac:	1afffffc 	bne	7a4 <wait_for_vsync+0x24>
+        status = *(pixel_ctrl_ptr + 3);
+    }
+
+    return true;
+}
+     7b0:	e3a00001 	mov	r0, #1
+     7b4:	e12fff1e 	bx	lr
+
+000007b8 <plot_chicken>:
+
+
+// subroutine for plotting the chicken on the screen
+// will select the correct image according to the chicken's current facing
+void plot_chicken(chick *myChick) {
+     7b8:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+     7bc:	e24dd00c 	sub	sp, sp, #12
+     7c0:	e1a02000 	mov	r2, r0
+    // properties of the chicken facing image
+    unsigned height = 0;
+    unsigned width = 0;
+
+    // get the face type from the chicken
+    switch (myChick->faceType) {
+     7c4:	e590c008 	ldr	r12, [r0, #8]
+     7c8:	e35c0003 	cmp	r12, #3
+     7cc:	979ff10c 	ldrls	pc, [pc, r12, lsl #2]
+     7d0:	ea000003 	b	7e4 <plot_chicken+0x2c>
+     7d4:	00000808 	.word	0x00000808
+     7d8:	00000808 	.word	0x00000808
+     7dc:	000007f0 	.word	0x000007f0
+     7e0:	000007fc 	.word	0x000007fc
+// will select the correct image according to the chicken's current facing
+void plot_chicken(chick *myChick) {
+
+    // properties of the chicken facing image
+    unsigned height = 0;
+    unsigned width = 0;
+     7e4:	e3a03000 	mov	r3, #0
+// subroutine for plotting the chicken on the screen
+// will select the correct image according to the chicken's current facing
+void plot_chicken(chick *myChick) {
+
+    // properties of the chicken facing image
+    unsigned height = 0;
+     7e8:	e1a0e003 	mov	lr, r3
+     7ec:	ea000007 	b	810 <plot_chicken+0x58>
+            height = 34;
+            width = 22;
+            break;
+        case 2: // facing LEFT
+            height = 34;
+            width = 27;
+     7f0:	e3a0301b 	mov	r3, #27
+        case 1: // facing DOWN
+            height = 34;
+            width = 22;
+            break;
+        case 2: // facing LEFT
+            height = 34;
+     7f4:	e3a0e022 	mov	lr, #34	; 0x22
+            width = 27;
+            break;
+     7f8:	ea000004 	b	810 <plot_chicken+0x58>
+        case 3: // facing RIGHT
+            height = 34;
+            width = 27;
+     7fc:	e3a0301b 	mov	r3, #27
+        case 2: // facing LEFT
+            height = 34;
+            width = 27;
+            break;
+        case 3: // facing RIGHT
+            height = 34;
+     800:	e3a0e022 	mov	lr, #34	; 0x22
+            width = 27;
+            break;
+     804:	ea000001 	b	810 <plot_chicken+0x58>
+
+    // get the face type from the chicken
+    switch (myChick->faceType) {
+        case 0: // facing UP
+            height = 34;
+            width = 22;
+     808:	e3a03016 	mov	r3, #22
+    unsigned width = 0;
+
+    // get the face type from the chicken
+    switch (myChick->faceType) {
+        case 0: // facing UP
+            height = 34;
+     80c:	e3a0e022 	mov	lr, #34	; 0x22
+            break;
+        default:; // which does not exist, just for suppressing warning
+    }
+
+    // plot the image according to the corrections above
+    plot_image(myChick->x, myChick->y, chickImageSelection[myChick->faceType], width, height);
+     810:	e5920000 	ldr	r0, [r2]
+     814:	e5921004 	ldr	r1, [r2, #4]
+     818:	e30729c8 	movw	r2, #31176	; 0x79c8
+     81c:	e3402002 	movt	r2, #2
+     820:	e082210c 	add	r2, r2, r12, lsl #2
+     824:	e5122760 	ldr	r2, [r2, #-1888]	; 0xfffff8a0
+     828:	e58de000 	str	lr, [sp]
+     82c:	ebffff73 	bl	600 <plot_image>
+}
+     830:	e28dd00c 	add	sp, sp, #12
+     834:	e8bd8000 	ldmfd	sp!, {pc}
+
+00000838 <chickMove>:
+
+// function for updating the chicken's location&facing, according to the user's input from KEYs
+void chickMove(int key, chick *myChick) {
+    if(KEYBOARD_UP){
+     838:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     83c:	e3403009 	movt	r3, #9
+     840:	e5d33007 	ldrb	r3, [r3, #7]
+     844:	e3530000 	cmp	r3, #0
+     848:	1a00001a 	bne	8b8 <chickMove+0x80>
+        goto go_up;
+    } else if(KEYBOARD_DOWN){
+     84c:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     850:	e3403009 	movt	r3, #9
+     854:	e5d33008 	ldrb	r3, [r3, #8]
+     858:	e3530000 	cmp	r3, #0
+     85c:	1a000021 	bne	8e8 <chickMove+0xb0>
+        goto go_down;
+    }else if(KEYBOARD_LEFT){
+     860:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     864:	e3403009 	movt	r3, #9
+     868:	e5d33009 	ldrb	r3, [r3, #9]
+     86c:	e3530000 	cmp	r3, #0
+     870:	1a000028 	bne	918 <chickMove+0xe0>
+        goto go_left;
+    }else if(KEYBOARD_RIGHT){
+     874:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     878:	e3403009 	movt	r3, #9
+     87c:	e5d3300a 	ldrb	r3, [r3, #10]
+     880:	e3530000 	cmp	r3, #0
+     884:	1a00002f 	bne	948 <chickMove+0x110>
+        goto go_right;
+    }
+
+
+    switch (key) {
+     888:	e2400001 	sub	r0, r0, #1
+     88c:	e3500007 	cmp	r0, #7
+     890:	979ff100 	ldrls	pc, [pc, r0, lsl #2]
+     894:	ea000036 	b	974 <chickMove+0x13c>
+     898:	00000948 	.word	0x00000948
+     89c:	00000918 	.word	0x00000918
+     8a0:	00000974 	.word	0x00000974
+     8a4:	000008e8 	.word	0x000008e8
+     8a8:	00000974 	.word	0x00000974
+     8ac:	00000974 	.word	0x00000974
+     8b0:	00000974 	.word	0x00000974
+     8b4:	000008b8 	.word	0x000008b8
+        case 0b1000: {// KEY3 pressed, UP
+            go_up:
+            if ((myChick->x + 7) < 293 && (myChick->y - 29) > -4) {
+     8b8:	e5913000 	ldr	r3, [r1]
+     8bc:	e2833007 	add	r3, r3, #7
+     8c0:	e3530f49 	cmp	r3, #292	; 0x124
+     8c4:	ca00002a 	bgt	974 <chickMove+0x13c>
+     8c8:	e5912004 	ldr	r2, [r1, #4]
+     8cc:	e242201d 	sub	r2, r2, #29
+     8d0:	e3720003 	cmn	r2, #3
+                myChick->x += 7;
+     8d4:	a5813000 	strge	r3, [r1]
+                myChick->y -= 29;
+     8d8:	a5812004 	strge	r2, [r1, #4]
+                myChick->faceType = 0;
+     8dc:	a3a03000 	movge	r3, #0
+     8e0:	a5813008 	strge	r3, [r1, #8]
+     8e4:	ea000022 	b	974 <chickMove+0x13c>
+            }
+            break;
+        }
+        case 0b0100: {// KEY2 pressed, DOWN
+            go_down:
+            if ((myChick->x - 7) > 0 && (myChick->y + 29) < 206) {
+     8e8:	e5913000 	ldr	r3, [r1]
+     8ec:	e2433007 	sub	r3, r3, #7
+     8f0:	e3530000 	cmp	r3, #0
+     8f4:	da00001e 	ble	974 <chickMove+0x13c>
+     8f8:	e5912004 	ldr	r2, [r1, #4]
+     8fc:	e282201d 	add	r2, r2, #29
+     900:	e35200cd 	cmp	r2, #205	; 0xcd
+                myChick->x -= 7;
+     904:	d5813000 	strle	r3, [r1]
+                myChick->y += 29;
+     908:	d5812004 	strle	r2, [r1, #4]
+                myChick->faceType = 1;
+     90c:	d3a03001 	movle	r3, #1
+     910:	d5813008 	strle	r3, [r1, #8]
+     914:	ea000016 	b	974 <chickMove+0x13c>
+            }
+            break;
+        }
+        case 0b0010: {// KEY1 pressed, LEFT
+            go_left:
+            if ((myChick->x - 29) > 0 && (myChick->y - 7) > -4) {
+     918:	e5913000 	ldr	r3, [r1]
+     91c:	e243301d 	sub	r3, r3, #29
+     920:	e3530000 	cmp	r3, #0
+     924:	da000012 	ble	974 <chickMove+0x13c>
+     928:	e5912004 	ldr	r2, [r1, #4]
+     92c:	e2422007 	sub	r2, r2, #7
+     930:	e3720003 	cmn	r2, #3
+                myChick->x -= 29;
+     934:	a5813000 	strge	r3, [r1]
+                myChick->y -= 7;
+     938:	a5812004 	strge	r2, [r1, #4]
+                myChick->faceType = 2;
+     93c:	a3a03002 	movge	r3, #2
+     940:	a5813008 	strge	r3, [r1, #8]
+     944:	ea00000a 	b	974 <chickMove+0x13c>
+            }
+            break;
+        }
+        case 0b0001: {// KEY0 pressed, RIGHT
+            go_right:
+            if ((myChick->x + 29) < 293 && (myChick->y + 7) < 206) {
+     948:	e5913000 	ldr	r3, [r1]
+     94c:	e283301d 	add	r3, r3, #29
+     950:	e3530f49 	cmp	r3, #292	; 0x124
+     954:	ca000006 	bgt	974 <chickMove+0x13c>
+     958:	e5912004 	ldr	r2, [r1, #4]
+     95c:	e2822007 	add	r2, r2, #7
+     960:	e35200cd 	cmp	r2, #205	; 0xcd
+                myChick->x += 29;
+     964:	d5813000 	strle	r3, [r1]
+                myChick->y += 7;
+     968:	d5812004 	strle	r2, [r1, #4]
+                myChick->faceType = 3;
+     96c:	d3a03003 	movle	r3, #3
+     970:	d5813008 	strle	r3, [r1, #8]
+            break;
+        }
+        default:;
+    }
+
+    KEYBOARD_UP = false;
+     974:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     978:	e3403009 	movt	r3, #9
+     97c:	e3a02000 	mov	r2, #0
+     980:	e5c32007 	strb	r2, [r3, #7]
+    KEYBOARD_DOWN = false;
+     984:	e5c32008 	strb	r2, [r3, #8]
+    KEYBOARD_LEFT = false;
+     988:	e5c32009 	strb	r2, [r3, #9]
+    KEYBOARD_RIGHT = false;
+     98c:	e5c3200a 	strb	r2, [r3, #10]
+     990:	e12fff1e 	bx	lr
+
+00000994 <carMove>:
+}
+
+// subroutine for modifying some car's location, as the car should be moving on the road
+void carMove(ROAD *myRoad) {
+     994:	e92d4038 	push	{r3, r4, r5, lr}
+     998:	e1a04000 	mov	r4, r0
+
+    // update the location according to the car's type
+    switch (myRoad->carOnRoad.carType) {
+     99c:	e590301c 	ldr	r3, [r0, #28]
+     9a0:	e3530007 	cmp	r3, #7
+     9a4:	979ff103 	ldrls	pc, [pc, r3, lsl #2]
+     9a8:	ea000048 	b	ad0 <carMove+0x13c>
+     9ac:	000009cc 	.word	0x000009cc
+     9b0:	000009cc 	.word	0x000009cc
+     9b4:	000009cc 	.word	0x000009cc
+     9b8:	000009cc 	.word	0x000009cc
+     9bc:	000009cc 	.word	0x000009cc
+     9c0:	00000a50 	.word	0x00000a50
+     9c4:	00000a50 	.word	0x00000a50
+     9c8:	00000a50 	.word	0x00000a50
+        case 0 ... 4: { // those cars are moving from left to right
+            if (myRoad->carOnRoad.x + myRoad->carOnRoad.speed * 4 < 320) {
+     9cc:	e5903010 	ldr	r3, [r0, #16]
+     9d0:	e5902008 	ldr	r2, [r0, #8]
+     9d4:	e0822103 	add	r2, r2, r3, lsl #2
+     9d8:	e3520d05 	cmp	r2, #320	; 0x140
+     9dc:	aa000004 	bge	9f4 <carMove+0x60>
+                myRoad->carOnRoad.x += myRoad->carOnRoad.speed * 4;
+     9e0:	e5802008 	str	r2, [r0, #8]
+                myRoad->carOnRoad.y += myRoad->carOnRoad.speed;
+     9e4:	e590200c 	ldr	r2, [r0, #12]
+     9e8:	e0823003 	add	r3, r2, r3
+     9ec:	e580300c 	str	r3, [r0, #12]
+     9f0:	e8bd8038 	pop	{r3, r4, r5, pc}
+            } else {
+                myRoad->carOnRoad = carsSelection[rand() % 8];
+     9f4:	eb0002f1 	bl	15c0 <rand>
+     9f8:	e30739c8 	movw	r3, #31176	; 0x79c8
+     9fc:	e3403002 	movt	r3, #2
+     a00:	e1a02fc0 	asr	r2, r0, #31
+     a04:	e1a02ea2 	lsr	r2, r2, #29
+     a08:	e0805002 	add	r5, r0, r2
+     a0c:	e2055007 	and	r5, r5, #7
+     a10:	e0625005 	rsb	r5, r2, r5
+     a14:	e0855185 	add	r5, r5, r5, lsl #3
+     a18:	e0835105 	add	r5, r3, r5, lsl #2
+     a1c:	e284c008 	add	r12, r4, #8
+     a20:	e2455e75 	sub	r5, r5, #1872	; 0x750
+     a24:	e8b5000f 	ldm	r5!, {r0, r1, r2, r3}
+     a28:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     a2c:	e8b5000f 	ldm	r5!, {r0, r1, r2, r3}
+     a30:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     a34:	e5953000 	ldr	r3, [r5]
+     a38:	e58c3000 	str	r3, [r12]
+                myRoad->carOnRoad.y += myRoad->initialY;
+     a3c:	e594200c 	ldr	r2, [r4, #12]
+     a40:	e5943000 	ldr	r3, [r4]
+     a44:	e0823003 	add	r3, r2, r3
+     a48:	e584300c 	str	r3, [r4, #12]
+     a4c:	e8bd8038 	pop	{r3, r4, r5, pc}
+            }
+            break;
+        }
+        case 5 ... 7: { // those cars are moving from right to left
+            if (myRoad->carOnRoad.x - myRoad->carOnRoad.speed * 4 < -80) {
+     a50:	e5903010 	ldr	r3, [r0, #16]
+     a54:	e5902008 	ldr	r2, [r0, #8]
+     a58:	e0422103 	sub	r2, r2, r3, lsl #2
+     a5c:	e3720050 	cmn	r2, #80	; 0x50
+     a60:	aa000004 	bge	a78 <carMove+0xe4>
+                myRoad->carOnRoad.x -= myRoad->carOnRoad.speed * 4;
+     a64:	e5802008 	str	r2, [r0, #8]
+                myRoad->carOnRoad.y -= myRoad->carOnRoad.speed;
+     a68:	e590200c 	ldr	r2, [r0, #12]
+     a6c:	e0633002 	rsb	r3, r3, r2
+     a70:	e580300c 	str	r3, [r0, #12]
+     a74:	e8bd8038 	pop	{r3, r4, r5, pc}
+            } else {
+                myRoad->carOnRoad = carsSelection[rand() % 8];
+     a78:	eb0002d0 	bl	15c0 <rand>
+     a7c:	e30739c8 	movw	r3, #31176	; 0x79c8
+     a80:	e3403002 	movt	r3, #2
+     a84:	e1a02fc0 	asr	r2, r0, #31
+     a88:	e1a02ea2 	lsr	r2, r2, #29
+     a8c:	e0805002 	add	r5, r0, r2
+     a90:	e2055007 	and	r5, r5, #7
+     a94:	e0625005 	rsb	r5, r2, r5
+     a98:	e0855185 	add	r5, r5, r5, lsl #3
+     a9c:	e0835105 	add	r5, r3, r5, lsl #2
+     aa0:	e284c008 	add	r12, r4, #8
+     aa4:	e2455e75 	sub	r5, r5, #1872	; 0x750
+     aa8:	e8b5000f 	ldm	r5!, {r0, r1, r2, r3}
+     aac:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     ab0:	e8b5000f 	ldm	r5!, {r0, r1, r2, r3}
+     ab4:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     ab8:	e5953000 	ldr	r3, [r5]
+     abc:	e58c3000 	str	r3, [r12]
+                myRoad->carOnRoad.y += myRoad->initialY;
+     ac0:	e594200c 	ldr	r2, [r4, #12]
+     ac4:	e5943000 	ldr	r3, [r4]
+     ac8:	e0823003 	add	r3, r2, r3
+     acc:	e584300c 	str	r3, [r4, #12]
+     ad0:	e8bd8038 	pop	{r3, r4, r5, pc}
+
+00000ad4 <carHitTest>:
+// boolean function for checking whether the chicken is hit by the car
+//  it also updates which road the chicken is standing on
+bool carHitTest(ROAD *myRoad, chick *myChick) {
+
+    // the hitting bound should be adjusted according to the car types
+    switch (myRoad->carOnRoad.carType) {
+     ad4:	e590301c 	ldr	r3, [r0, #28]
+     ad8:	e3530007 	cmp	r3, #7
+     adc:	979ff103 	ldrls	pc, [pc, r3, lsl #2]
+     ae0:	ea000036 	b	bc0 <carHitTest+0xec>
+     ae4:	00000b04 	.word	0x00000b04
+     ae8:	00000b1c 	.word	0x00000b1c
+     aec:	00000b34 	.word	0x00000b34
+     af0:	00000b4c 	.word	0x00000b4c
+     af4:	00000b64 	.word	0x00000b64
+     af8:	00000b7c 	.word	0x00000b7c
+     afc:	00000b94 	.word	0x00000b94
+     b00:	00000bac 	.word	0x00000bac
+        case 0: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 8;
+     b04:	e5903008 	ldr	r3, [r0, #8]
+     b08:	e2832008 	add	r2, r3, #8
+     b0c:	e5802024 	str	r2, [r0, #36]	; 0x24
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 77;
+     b10:	e283304d 	add	r3, r3, #77	; 0x4d
+     b14:	e5803028 	str	r3, [r0, #40]	; 0x28
+            break;
+     b18:	ea000028 	b	bc0 <carHitTest+0xec>
+        }
+        case 1: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 5;
+     b1c:	e5903008 	ldr	r3, [r0, #8]
+     b20:	e2832005 	add	r2, r3, #5
+     b24:	e5802024 	str	r2, [r0, #36]	; 0x24
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 60;
+     b28:	e283303c 	add	r3, r3, #60	; 0x3c
+     b2c:	e5803028 	str	r3, [r0, #40]	; 0x28
+            break;
+     b30:	ea000022 	b	bc0 <carHitTest+0xec>
+        }
+        case 2: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 6;
+     b34:	e5903008 	ldr	r3, [r0, #8]
+     b38:	e2832006 	add	r2, r3, #6
+     b3c:	e5802024 	str	r2, [r0, #36]	; 0x24
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 69;
+     b40:	e2833045 	add	r3, r3, #69	; 0x45
+     b44:	e5803028 	str	r3, [r0, #40]	; 0x28
+            break;
+     b48:	ea00001c 	b	bc0 <carHitTest+0xec>
+        }
+        case 3: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 8;
+     b4c:	e5903008 	ldr	r3, [r0, #8]
+     b50:	e2832008 	add	r2, r3, #8
+     b54:	e5802024 	str	r2, [r0, #36]	; 0x24
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 113;
+     b58:	e2833071 	add	r3, r3, #113	; 0x71
+     b5c:	e5803028 	str	r3, [r0, #40]	; 0x28
+            break;//
+     b60:	ea000016 	b	bc0 <carHitTest+0xec>
+        }
+        case 4: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 5;
+     b64:	e5903008 	ldr	r3, [r0, #8]
+     b68:	e2832005 	add	r2, r3, #5
+     b6c:	e5802024 	str	r2, [r0, #36]	; 0x24
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 67;
+     b70:	e2833043 	add	r3, r3, #67	; 0x43
+     b74:	e5803028 	str	r3, [r0, #40]	; 0x28
+            break;
+     b78:	ea000010 	b	bc0 <carHitTest+0xec>
+        }
+        case 5: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 5;
+     b7c:	e5903008 	ldr	r3, [r0, #8]
+     b80:	e2832005 	add	r2, r3, #5
+     b84:	e5802024 	str	r2, [r0, #36]	; 0x24
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 68;
+     b88:	e2833044 	add	r3, r3, #68	; 0x44
+     b8c:	e5803028 	str	r3, [r0, #40]	; 0x28
+            break;
+     b90:	ea00000a 	b	bc0 <carHitTest+0xec>
+        }
+        case 6: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 6;
+     b94:	e5903008 	ldr	r3, [r0, #8]
+     b98:	e2832006 	add	r2, r3, #6
+     b9c:	e5802024 	str	r2, [r0, #36]	; 0x24
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 68;
+     ba0:	e2833044 	add	r3, r3, #68	; 0x44
+     ba4:	e5803028 	str	r3, [r0, #40]	; 0x28
+            break;
+     ba8:	ea000004 	b	bc0 <carHitTest+0xec>
+        }
+        case 7: {
+            myRoad->carOnRoad.collisionLeft = myRoad->carOnRoad.x + 9;
+     bac:	e5903008 	ldr	r3, [r0, #8]
+     bb0:	e2832009 	add	r2, r3, #9
+     bb4:	e5802024 	str	r2, [r0, #36]	; 0x24
+            myRoad->carOnRoad.collisionRight = myRoad->carOnRoad.x + 116;
+     bb8:	e2833074 	add	r3, r3, #116	; 0x74
+     bbc:	e5803028 	str	r3, [r0, #40]	; 0x28
+        }
+        default:;
+    }
+
+    // get the Y difference to determine whether the chicken is on this road
+    int diffY = (myRoad->initialY + myChick->x / 4) - myChick->y;
+     bc0:	e5913000 	ldr	r3, [r1]
+     bc4:	e2832003 	add	r2, r3, #3
+     bc8:	e3530000 	cmp	r3, #0
+     bcc:	a1a02003 	movge	r2, r3
+     bd0:	e590c000 	ldr	r12, [r0]
+     bd4:	e08c2142 	add	r2, r12, r2, asr #2
+     bd8:	e5911004 	ldr	r1, [r1, #4]
+     bdc:	e0612002 	rsb	r2, r1, r2
+
+    // check whether the chicken's x coordinate overlaps with the range defined above
+    bool carOverLap = ((myChick->x + 11) > myRoad->carOnRoad.collisionLeft) &&
+     be0:	e283300b 	add	r3, r3, #11
+     be4:	e5901024 	ldr	r1, [r0, #36]	; 0x24
+     be8:	e1530001 	cmp	r3, r1
+     bec:	d3a03000 	movle	r3, #0
+     bf0:	da000004 	ble	c08 <carHitTest+0x134>
+     bf4:	e5901028 	ldr	r1, [r0, #40]	; 0x28
+     bf8:	e1530001 	cmp	r3, r1
+     bfc:	a3a03000 	movge	r3, #0
+     c00:	b3a03001 	movlt	r3, #1
+     c04:	eaffffff 	b	c08 <carHitTest+0x134>
+    // assume the chicken is not on the road at first, and it is not hit by any cars as well
+    myRoad->stepOn = false;
+    bool hitByCar = false;
+
+    // if the chicken is on the road
+    if (diffY < 30 && diffY > 0) {
+     c08:	e2422001 	sub	r2, r2, #1
+     c0c:	e352001c 	cmp	r2, #28
+    // check whether the chicken's x coordinate overlaps with the range defined above
+    bool carOverLap = ((myChick->x + 11) > myRoad->carOnRoad.collisionLeft) &&
+                      ((myChick->x + 11) < myRoad->carOnRoad.collisionRight);
+
+    // assume the chicken is not on the road at first, and it is not hit by any cars as well
+    myRoad->stepOn = false;
+     c10:	83a03000 	movhi	r3, #0
+     c14:	85c03004 	strbhi	r3, [r0, #4]
+    bool hitByCar = false;
+
+    // if the chicken is on the road
+    if (diffY < 30 && diffY > 0) {
+        myRoad->stepOn = true; // update the on Road flag
+     c18:	93a02001 	movls	r2, #1
+     c1c:	95c02004 	strbls	r2, [r0, #4]
+    bool carOverLap = ((myChick->x + 11) > myRoad->carOnRoad.collisionLeft) &&
+                      ((myChick->x + 11) < myRoad->carOnRoad.collisionRight);
+
+    // assume the chicken is not on the road at first, and it is not hit by any cars as well
+    myRoad->stepOn = false;
+    bool hitByCar = false;
+     c20:	e1a00003 	mov	r0, r3
+            hitByCar = true; // update the hit flag
+        }
+    }
+
+    return hitByCar;
+     c24:	e12fff1e 	bx	lr
+
+00000c28 <main>:
+
+// global varible for determining the game state
+bool gameOn = false;
+bool gameOver = false;
+
+int main() {
+     c28:	e92d4ff0 	push	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
+     c2c:	e24ddf91 	sub	sp, sp, #580	; 0x244
+    set_A9_IRQ_stack();
+     c30:	ebfffd8f 	bl	274 <set_A9_IRQ_stack>
+    config_GIC();
+     c34:	ebfffe0a 	bl	464 <config_GIC>
+    config_KEYs();
+     c38:	ebfffd97 	bl	29c <config_KEYs>
+    config_PS2();//////
+     c3c:	ebfffd9b 	bl	2b0 <config_PS2>
+    enable_A9_interrupts();
+     c40:	ebfffd92 	bl	290 <enable_A9_interrupts>
+    /* set front pixel buffer to start of FPGA On-chip memory */
+    *(pixel_ctrl_ptr + 1) = 0xC8000000; // first store the address in the
+     c44:	e30749c8 	movw	r4, #31176	; 0x79c8
+     c48:	e3404002 	movt	r4, #2
+     c4c:	e5143764 	ldr	r3, [r4, #-1892]	; 0xfffff89c
+     c50:	e3a02332 	mov	r2, #-939524096	; 0xc8000000
+     c54:	e5832004 	str	r2, [r3, #4]
+    // back buffer
+    /* now, swap the front/back buffers, to set the front buffer location */
+    wait_for_vsync();
+     c58:	ebfffec8 	bl	780 <wait_for_vsync>
+    /* initialize a pointer to the pixel buffer, used by drawing functions */
+    pixel_buffer_start = *pixel_ctrl_ptr;
+     c5c:	e5143764 	ldr	r3, [r4, #-1892]	; 0xfffff89c
+     c60:	e5932000 	ldr	r2, [r3]
+     c64:	e30f36bc 	movw	r3, #63164	; 0xf6bc
+     c68:	e3403009 	movt	r3, #9
+     c6c:	e583200c 	str	r2, [r3, #12]
+    clear_screen(); // pixel_buffer_start points to the pixel buffer
+     c70:	ebfffeb2 	bl	740 <clear_screen>
+    /* set back pixel buffer to start of SDRAM memory */
+    *(pixel_ctrl_ptr + 1) = 0xC0000000;
+     c74:	e5143764 	ldr	r3, [r4, #-1892]	; 0xfffff89c
+     c78:	e3a02103 	mov	r2, #-1073741824	; 0xc0000000
+     c7c:	e5832004 	str	r2, [r3, #4]
+
+    unsigned SW_value;
+    unsigned score;
+    unsigned score_hundred = 0;
+    unsigned score_ten = 0;
+    unsigned score_one = 0;
+     c80:	e3a00000 	mov	r0, #0
+     c84:	e58d001c 	str	r0, [sp, #28]
+
+
+    unsigned SW_value;
+    unsigned score;
+    unsigned score_hundred = 0;
+    unsigned score_ten = 0;
+     c88:	e58d0014 	str	r0, [sp, #20]
+    *(pixel_ctrl_ptr + 1) = 0xC0000000;
+
+
+    unsigned SW_value;
+    unsigned score;
+    unsigned score_hundred = 0;
+     c8c:	e58d0010 	str	r0, [sp, #16]
+    unsigned oneSecCount;
+    chick newChick;
+    ROAD road_3, road_2, road_1, road0, road1, road2, road3, road4, road5, road6, road7;
+    newGame:
+    {
+        *LEDR_ptr = 0;
+     c90:	e1a05004 	mov	r5, r4
+     c94:	e1a0b000 	mov	r11, r0
+        oneSecCount = 0;
+        gameOver = false;
+     c98:	e30f46bc 	movw	r4, #63164	; 0xf6bc
+     c9c:	e3404009 	movt	r4, #9
+     ca0:	e1a09000 	mov	r9, r0
+
+        gameOverRoutine:
+        {
+            if (gameOver) {
+
+                plot_image(0, 0, image_gameOverPage_320x240, 320, 240);
+     ca4:	e2453e62 	sub	r3, r5, #1568	; 0x620
+     ca8:	e243a004 	sub	r10, r3, #4
+    unsigned oneSecCount;
+    chick newChick;
+    ROAD road_3, road_2, road_1, road0, road1, road2, road3, road4, road5, road6, road7;
+    newGame:
+    {
+        *LEDR_ptr = 0;
+     cac:	e5153630 	ldr	r3, [r5, #-1584]	; 0xfffff9d0
+     cb0:	e583b000 	str	r11, [r3]
+        oneSecCount = 0;
+        gameOver = false;
+     cb4:	e5c49010 	strb	r9, [r4, #16]
+        gameOn = true;
+     cb8:	e3a06001 	mov	r6, #1
+     cbc:	e5c46011 	strb	r6, [r4, #17]
+        score = 0;
+        newChick = (chick) {.x = 160, .y= 186, .faceType=0, .imageWidth=22, .imageHeight=34};
+     cc0:	e28def8b 	add	lr, sp, #556	; 0x22c
+     cc4:	e301c9e8 	movw	r12, #6632	; 0x19e8
+     cc8:	e340c000 	movt	r12, #0
+     ccc:	e8bc000f 	ldm	r12!, {r0, r1, r2, r3}
+     cd0:	e8ae000f 	stmia	lr!, {r0, r1, r2, r3}
+     cd4:	e59c3000 	ldr	r3, [r12]
+     cd8:	e58e3000 	str	r3, [lr]
+
+        road_3 = (ROAD) {.initialY = -3 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     cdc:	eb000237 	bl	15c0 <rand>
+     ce0:	e3e03059 	mvn	r3, #89	; 0x59
+     ce4:	e58d3200 	str	r3, [sp, #512]	; 0x200
+     ce8:	e5cd9204 	strb	r9, [sp, #516]	; 0x204
+     cec:	e1a03fc0 	asr	r3, r0, #31
+     cf0:	e1a03ea3 	lsr	r3, r3, #29
+     cf4:	e080e003 	add	lr, r0, r3
+     cf8:	e20ee007 	and	lr, lr, #7
+     cfc:	e063e00e 	rsb	lr, r3, lr
+     d00:	e08ee18e 	add	lr, lr, lr, lsl #3
+     d04:	e085e10e 	add	lr, r5, lr, lsl #2
+     d08:	e28dcf82 	add	r12, sp, #520	; 0x208
+     d0c:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     d10:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     d14:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     d18:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     d1c:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     d20:	e59e3000 	ldr	r3, [lr]
+     d24:	e58c3000 	str	r3, [r12]
+        road_3.carOnRoad.y += -3 * 30;
+     d28:	e59d320c 	ldr	r3, [sp, #524]	; 0x20c
+     d2c:	e243305a 	sub	r3, r3, #90	; 0x5a
+     d30:	e58d320c 	str	r3, [sp, #524]	; 0x20c
+
+        road_2 = (ROAD) {.initialY = -2 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     d34:	eb000221 	bl	15c0 <rand>
+     d38:	e3e0303b 	mvn	r3, #59	; 0x3b
+     d3c:	e58d31d4 	str	r3, [sp, #468]	; 0x1d4
+     d40:	e5cd91d8 	strb	r9, [sp, #472]	; 0x1d8
+     d44:	e1a03fc0 	asr	r3, r0, #31
+     d48:	e1a03ea3 	lsr	r3, r3, #29
+     d4c:	e080e003 	add	lr, r0, r3
+     d50:	e20ee007 	and	lr, lr, #7
+     d54:	e063e00e 	rsb	lr, r3, lr
+     d58:	e08ee18e 	add	lr, lr, lr, lsl #3
+     d5c:	e085e10e 	add	lr, r5, lr, lsl #2
+     d60:	e28dcf77 	add	r12, sp, #476	; 0x1dc
+     d64:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     d68:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     d6c:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     d70:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     d74:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     d78:	e59e3000 	ldr	r3, [lr]
+     d7c:	e58c3000 	str	r3, [r12]
+        road_2.carOnRoad.y += -2 * 30;
+     d80:	e59d31e0 	ldr	r3, [sp, #480]	; 0x1e0
+     d84:	e243303c 	sub	r3, r3, #60	; 0x3c
+     d88:	e58d31e0 	str	r3, [sp, #480]	; 0x1e0
+
+        road_1 = (ROAD) {.initialY = -1 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     d8c:	eb00020b 	bl	15c0 <rand>
+     d90:	e3e0301d 	mvn	r3, #29
+     d94:	e58d31a8 	str	r3, [sp, #424]	; 0x1a8
+     d98:	e5cd91ac 	strb	r9, [sp, #428]	; 0x1ac
+     d9c:	e1a03fc0 	asr	r3, r0, #31
+     da0:	e1a03ea3 	lsr	r3, r3, #29
+     da4:	e080e003 	add	lr, r0, r3
+     da8:	e20ee007 	and	lr, lr, #7
+     dac:	e063e00e 	rsb	lr, r3, lr
+     db0:	e08ee18e 	add	lr, lr, lr, lsl #3
+     db4:	e085e10e 	add	lr, r5, lr, lsl #2
+     db8:	e28dce1b 	add	r12, sp, #432	; 0x1b0
+     dbc:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     dc0:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     dc4:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     dc8:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     dcc:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     dd0:	e59e3000 	ldr	r3, [lr]
+     dd4:	e58c3000 	str	r3, [r12]
+        road_1.carOnRoad.y += -1 * 30;
+     dd8:	e59d31b4 	ldr	r3, [sp, #436]	; 0x1b4
+     ddc:	e243301e 	sub	r3, r3, #30
+     de0:	e58d31b4 	str	r3, [sp, #436]	; 0x1b4
+
+        road0 = (ROAD) {.initialY = 0, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     de4:	eb0001f5 	bl	15c0 <rand>
+     de8:	e58db17c 	str	r11, [sp, #380]	; 0x17c
+     dec:	e5cd9180 	strb	r9, [sp, #384]	; 0x180
+     df0:	e1a03fc0 	asr	r3, r0, #31
+     df4:	e1a03ea3 	lsr	r3, r3, #29
+     df8:	e080e003 	add	lr, r0, r3
+     dfc:	e20ee007 	and	lr, lr, #7
+     e00:	e063e00e 	rsb	lr, r3, lr
+     e04:	e08ee18e 	add	lr, lr, lr, lsl #3
+     e08:	e085e10e 	add	lr, r5, lr, lsl #2
+     e0c:	e28dcf61 	add	r12, sp, #388	; 0x184
+     e10:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     e14:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     e18:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     e1c:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     e20:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     e24:	e59e3000 	ldr	r3, [lr]
+     e28:	e58c3000 	str	r3, [r12]
+        road1 = (ROAD) {.initialY = 1 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     e2c:	eb0001e3 	bl	15c0 <rand>
+     e30:	e3a0301e 	mov	r3, #30
+     e34:	e58d3150 	str	r3, [sp, #336]	; 0x150
+     e38:	e5cd9154 	strb	r9, [sp, #340]	; 0x154
+     e3c:	e1a03fc0 	asr	r3, r0, #31
+     e40:	e1a03ea3 	lsr	r3, r3, #29
+     e44:	e080e003 	add	lr, r0, r3
+     e48:	e20ee007 	and	lr, lr, #7
+     e4c:	e063e00e 	rsb	lr, r3, lr
+     e50:	e08ee18e 	add	lr, lr, lr, lsl #3
+     e54:	e085e10e 	add	lr, r5, lr, lsl #2
+     e58:	e28dcf56 	add	r12, sp, #344	; 0x158
+     e5c:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     e60:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     e64:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     e68:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     e6c:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     e70:	e59e3000 	ldr	r3, [lr]
+     e74:	e58c3000 	str	r3, [r12]
+        road1.carOnRoad.y += 1 * 30;
+     e78:	e59d315c 	ldr	r3, [sp, #348]	; 0x15c
+     e7c:	e283301e 	add	r3, r3, #30
+     e80:	e58d315c 	str	r3, [sp, #348]	; 0x15c
+        road2 = (ROAD) {.initialY = 2 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     e84:	eb0001cd 	bl	15c0 <rand>
+     e88:	e3a0303c 	mov	r3, #60	; 0x3c
+     e8c:	e58d3124 	str	r3, [sp, #292]	; 0x124
+     e90:	e5cd9128 	strb	r9, [sp, #296]	; 0x128
+     e94:	e1a03fc0 	asr	r3, r0, #31
+     e98:	e1a03ea3 	lsr	r3, r3, #29
+     e9c:	e080e003 	add	lr, r0, r3
+     ea0:	e20ee007 	and	lr, lr, #7
+     ea4:	e063e00e 	rsb	lr, r3, lr
+     ea8:	e08ee18e 	add	lr, lr, lr, lsl #3
+     eac:	e085e10e 	add	lr, r5, lr, lsl #2
+     eb0:	e28dcf4b 	add	r12, sp, #300	; 0x12c
+     eb4:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     eb8:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     ebc:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     ec0:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     ec4:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     ec8:	e59e3000 	ldr	r3, [lr]
+     ecc:	e58c3000 	str	r3, [r12]
+        road2.carOnRoad.y += 2 * 30;
+     ed0:	e59d3130 	ldr	r3, [sp, #304]	; 0x130
+     ed4:	e283303c 	add	r3, r3, #60	; 0x3c
+     ed8:	e58d3130 	str	r3, [sp, #304]	; 0x130
+        road3 = (ROAD) {.initialY = 3 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     edc:	eb0001b7 	bl	15c0 <rand>
+     ee0:	e3a0305a 	mov	r3, #90	; 0x5a
+     ee4:	e58d30f8 	str	r3, [sp, #248]	; 0xf8
+     ee8:	e5cd90fc 	strb	r9, [sp, #252]	; 0xfc
+     eec:	e1a03fc0 	asr	r3, r0, #31
+     ef0:	e1a03ea3 	lsr	r3, r3, #29
+     ef4:	e080e003 	add	lr, r0, r3
+     ef8:	e20ee007 	and	lr, lr, #7
+     efc:	e063e00e 	rsb	lr, r3, lr
+     f00:	e08ee18e 	add	lr, lr, lr, lsl #3
+     f04:	e085e10e 	add	lr, r5, lr, lsl #2
+     f08:	e28dcc01 	add	r12, sp, #256	; 0x100
+     f0c:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     f10:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     f14:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     f18:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     f1c:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     f20:	e59e3000 	ldr	r3, [lr]
+     f24:	e58c3000 	str	r3, [r12]
+        road3.carOnRoad.y += 3 * 30;
+     f28:	e59d3104 	ldr	r3, [sp, #260]	; 0x104
+     f2c:	e283305a 	add	r3, r3, #90	; 0x5a
+     f30:	e58d3104 	str	r3, [sp, #260]	; 0x104
+        road4 = (ROAD) {.initialY = 4 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     f34:	eb0001a1 	bl	15c0 <rand>
+     f38:	e3a03078 	mov	r3, #120	; 0x78
+     f3c:	e58d30cc 	str	r3, [sp, #204]	; 0xcc
+     f40:	e5cd90d0 	strb	r9, [sp, #208]	; 0xd0
+     f44:	e1a03fc0 	asr	r3, r0, #31
+     f48:	e1a03ea3 	lsr	r3, r3, #29
+     f4c:	e080e003 	add	lr, r0, r3
+     f50:	e20ee007 	and	lr, lr, #7
+     f54:	e063e00e 	rsb	lr, r3, lr
+     f58:	e08ee18e 	add	lr, lr, lr, lsl #3
+     f5c:	e085e10e 	add	lr, r5, lr, lsl #2
+     f60:	e28dc0d4 	add	r12, sp, #212	; 0xd4
+     f64:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     f68:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     f6c:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     f70:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     f74:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     f78:	e59e3000 	ldr	r3, [lr]
+     f7c:	e58c3000 	str	r3, [r12]
+        road4.carOnRoad.y += 4 * 30;
+     f80:	e59d30d8 	ldr	r3, [sp, #216]	; 0xd8
+     f84:	e2833078 	add	r3, r3, #120	; 0x78
+     f88:	e58d30d8 	str	r3, [sp, #216]	; 0xd8
+        road5 = (ROAD) {.initialY = 5 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     f8c:	eb00018b 	bl	15c0 <rand>
+     f90:	e3a03096 	mov	r3, #150	; 0x96
+     f94:	e58d30a0 	str	r3, [sp, #160]	; 0xa0
+     f98:	e5cd90a4 	strb	r9, [sp, #164]	; 0xa4
+     f9c:	e1a03fc0 	asr	r3, r0, #31
+     fa0:	e1a03ea3 	lsr	r3, r3, #29
+     fa4:	e080e003 	add	lr, r0, r3
+     fa8:	e20ee007 	and	lr, lr, #7
+     fac:	e063e00e 	rsb	lr, r3, lr
+     fb0:	e08ee18e 	add	lr, lr, lr, lsl #3
+     fb4:	e085e10e 	add	lr, r5, lr, lsl #2
+     fb8:	e28dc0a8 	add	r12, sp, #168	; 0xa8
+     fbc:	e24eee75 	sub	lr, lr, #1872	; 0x750
+     fc0:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     fc4:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     fc8:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+     fcc:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+     fd0:	e59e3000 	ldr	r3, [lr]
+     fd4:	e58c3000 	str	r3, [r12]
+        road5.carOnRoad.y += 5 * 30;
+     fd8:	e59d30ac 	ldr	r3, [sp, #172]	; 0xac
+     fdc:	e2833096 	add	r3, r3, #150	; 0x96
+     fe0:	e58d30ac 	str	r3, [sp, #172]	; 0xac
+        road6 = (ROAD) {.initialY = 6 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+     fe4:	eb000175 	bl	15c0 <rand>
+     fe8:	e3a030b4 	mov	r3, #180	; 0xb4
+     fec:	e58d3074 	str	r3, [sp, #116]	; 0x74
+     ff0:	e5cd9078 	strb	r9, [sp, #120]	; 0x78
+     ff4:	e1a03fc0 	asr	r3, r0, #31
+     ff8:	e1a03ea3 	lsr	r3, r3, #29
+     ffc:	e080e003 	add	lr, r0, r3
+    1000:	e20ee007 	and	lr, lr, #7
+    1004:	e063e00e 	rsb	lr, r3, lr
+    1008:	e08ee18e 	add	lr, lr, lr, lsl #3
+    100c:	e085e10e 	add	lr, r5, lr, lsl #2
+    1010:	e28dc07c 	add	r12, sp, #124	; 0x7c
+    1014:	e24eee75 	sub	lr, lr, #1872	; 0x750
+    1018:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+    101c:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+    1020:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+    1024:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+    1028:	e59e3000 	ldr	r3, [lr]
+    102c:	e58c3000 	str	r3, [r12]
+        road6.carOnRoad.y += 6 * 30;
+    1030:	e59d3080 	ldr	r3, [sp, #128]	; 0x80
+    1034:	e28330b4 	add	r3, r3, #180	; 0xb4
+    1038:	e58d3080 	str	r3, [sp, #128]	; 0x80
+        road7 = (ROAD) {.initialY = 7 * 30, .stepOn= false, .carOnRoad = carsSelection[rand() % 8]};
+    103c:	eb00015f 	bl	15c0 <rand>
+    1040:	e3a030d2 	mov	r3, #210	; 0xd2
+    1044:	e58d3048 	str	r3, [sp, #72]	; 0x48
+    1048:	e5cd904c 	strb	r9, [sp, #76]	; 0x4c
+    104c:	e1a03fc0 	asr	r3, r0, #31
+    1050:	e1a03ea3 	lsr	r3, r3, #29
+    1054:	e080e003 	add	lr, r0, r3
+    1058:	e20ee007 	and	lr, lr, #7
+    105c:	e063e00e 	rsb	lr, r3, lr
+    1060:	e08ee18e 	add	lr, lr, lr, lsl #3
+    1064:	e085e10e 	add	lr, r5, lr, lsl #2
+    1068:	e28dc050 	add	r12, sp, #80	; 0x50
+    106c:	e24eee75 	sub	lr, lr, #1872	; 0x750
+    1070:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+    1074:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+    1078:	e8be000f 	ldm	lr!, {r0, r1, r2, r3}
+    107c:	e8ac000f 	stmia	r12!, {r0, r1, r2, r3}
+    1080:	e59e3000 	ldr	r3, [lr]
+    1084:	e58c3000 	str	r3, [r12]
+        road7.carOnRoad.y += 7 * 30;
+    1088:	e59d3054 	ldr	r3, [sp, #84]	; 0x54
+    108c:	e28330d2 	add	r3, r3, #210	; 0xd2
+    1090:	e58d3054 	str	r3, [sp, #84]	; 0x54
+        pixel_buffer_start = *(pixel_ctrl_ptr + 1); // we draw on the back buffer
+    1094:	e5153764 	ldr	r3, [r5, #-1892]	; 0xfffff89c
+    1098:	e5933004 	ldr	r3, [r3, #4]
+    109c:	e584300c 	str	r3, [r4, #12]
+    }
+    *KEY_EDGE_ptr = 0xF;
+    10a0:	e515362c 	ldr	r3, [r5, #-1580]	; 0xfffff9d4
+    10a4:	e3a0200f 	mov	r2, #15
+    10a8:	e5832000 	str	r2, [r3]
+    while (true) {
+        oneSecCount++;
+    10ac:	e58d6008 	str	r6, [sp, #8]
+    {
+        *LEDR_ptr = 0;
+        oneSecCount = 0;
+        gameOver = false;
+        gameOn = true;
+        score = 0;
+    10b0:	e58db00c 	str	r11, [sp, #12]
+    while (true) {
+        oneSecCount++;
+        if (oneSecCount == 10) {
+            oneSecCount = 0;
+            score++;
+            score_hundred = score / 100;
+    10b4:	e308851f 	movw	r8, #34079	; 0x851f
+    10b8:	e34581eb 	movt	r8, #20971	; 0x51eb
+            score_ten = (score - score_hundred * 100) / 10;
+    10bc:	e30c1ccd 	movw	r1, #52429	; 0xcccd
+    10c0:	e34c1ccc 	movt	r1, #52428	; 0xcccc
+    10c4:	e58d1018 	str	r1, [sp, #24]
+    10c8:	ea000014 	b	1120 <main+0x4f8>
+    *KEY_EDGE_ptr = 0xF;
+    while (true) {
+        oneSecCount++;
+        if (oneSecCount == 10) {
+            oneSecCount = 0;
+            score++;
+    10cc:	e59d200c 	ldr	r2, [sp, #12]
+    10d0:	e2822001 	add	r2, r2, #1
+    10d4:	e58d200c 	str	r2, [sp, #12]
+            score_hundred = score / 100;
+    10d8:	e0832298 	umull	r2, r3, r8, r2
+    10dc:	e1a032a3 	lsr	r3, r3, #5
+    10e0:	e58d3010 	str	r3, [sp, #16]
+            score_ten = (score - score_hundred * 100) / 10;
+    10e4:	e3a03064 	mov	r3, #100	; 0x64
+    10e8:	e59d0010 	ldr	r0, [sp, #16]
+    10ec:	e59d100c 	ldr	r1, [sp, #12]
+    10f0:	e0631093 	mls	r3, r3, r0, r1
+    10f4:	e59d0018 	ldr	r0, [sp, #24]
+    10f8:	e0820390 	umull	r0, r2, r0, r3
+    10fc:	e1a021a2 	lsr	r2, r2, #3
+    1100:	e58d2014 	str	r2, [sp, #20]
+            score_one = score - score_hundred * 100 - score_ten * 10;
+    1104:	e0822102 	add	r2, r2, r2, lsl #2
+    1108:	e0432082 	sub	r2, r3, r2, lsl #1
+    110c:	e58d201c 	str	r2, [sp, #28]
+            *LEDR_ptr = score;
+    1110:	e5153630 	ldr	r3, [r5, #-1584]	; 0xfffff9d0
+    1114:	e59d200c 	ldr	r2, [sp, #12]
+    1118:	e5832000 	str	r2, [r3]
+    }
+    *KEY_EDGE_ptr = 0xF;
+    while (true) {
+        oneSecCount++;
+        if (oneSecCount == 10) {
+            oneSecCount = 0;
+    111c:	e58db008 	str	r11, [sp, #8]
+            score_hundred = score / 100;
+            score_ten = (score - score_hundred * 100) / 10;
+            score_one = score - score_hundred * 100 - score_ten * 10;
+            *LEDR_ptr = score;
+        }
+        clear_screen();
+    1120:	ebfffd86 	bl	740 <clear_screen>
+        SW_value = (unsigned int) *SW_ptr; // read SW
+    1124:	e5153628 	ldr	r3, [r5, #-1576]	; 0xfffff9d8
+    1128:	e5933000 	ldr	r3, [r3]
+        gameOn = (bool) (SW_value >> 9);
+    112c:	e1b034a3 	lsrs	r3, r3, #9
+    1130:	03a03000 	moveq	r3, #0
+    1134:	13a03001 	movne	r3, #1
+    1138:	e5c43011 	strb	r3, [r4, #17]
+
+        int KEY_release = *KEY_EDGE_ptr;
+    113c:	e515362c 	ldr	r3, [r5, #-1580]	; 0xfffff9d4
+    1140:	e5930000 	ldr	r0, [r3]
+        *KEY_EDGE_ptr = 0xF;
+    1144:	e3a0200f 	mov	r2, #15
+    1148:	e5832000 	str	r2, [r3]
+
+        if (!gameOn) {
+    114c:	e5d43011 	ldrb	r3, [r4, #17]
+    1150:	e3530000 	cmp	r3, #0
+    1154:	0a0000dc 	beq	14cc <main+0x8a4>
+            //plot background
+            goto nextFrame;
+        }
+        if (gameOver) {
+    1158:	e5d43010 	ldrb	r3, [r4, #16]
+    115c:	e3530000 	cmp	r3, #0
+    1160:	1a0000bf 	bne	1464 <main+0x83c>
+            goto gameOverRoutine;
+        }
+
+        // update the chicken location and facing if it is moved
+        chickMove(KEY_release, &newChick);
+    1164:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    1168:	ebfffdb2 	bl	838 <chickMove>
+
+        // move the cars
+        carMove(&road_3);
+    116c:	e28d0c02 	add	r0, sp, #512	; 0x200
+    1170:	ebfffe07 	bl	994 <carMove>
+        carMove(&road_2);
+    1174:	e28d0f75 	add	r0, sp, #468	; 0x1d4
+    1178:	ebfffe05 	bl	994 <carMove>
+        carMove(&road_1);
+    117c:	e28d0f6a 	add	r0, sp, #424	; 0x1a8
+    1180:	ebfffe03 	bl	994 <carMove>
+        carMove(&road0);
+    1184:	e28d0f5f 	add	r0, sp, #380	; 0x17c
+    1188:	ebfffe01 	bl	994 <carMove>
+        carMove(&road1);
+    118c:	e28d0e15 	add	r0, sp, #336	; 0x150
+    1190:	ebfffdff 	bl	994 <carMove>
+        carMove(&road2);
+    1194:	e28d0f49 	add	r0, sp, #292	; 0x124
+    1198:	ebfffdfd 	bl	994 <carMove>
+        carMove(&road3);
+    119c:	e28d00f8 	add	r0, sp, #248	; 0xf8
+    11a0:	ebfffdfb 	bl	994 <carMove>
+        carMove(&road4);
+    11a4:	e28d00cc 	add	r0, sp, #204	; 0xcc
+    11a8:	ebfffdf9 	bl	994 <carMove>
+        carMove(&road5);
+    11ac:	e28d00a0 	add	r0, sp, #160	; 0xa0
+    11b0:	ebfffdf7 	bl	994 <carMove>
+        carMove(&road6);
+    11b4:	e28d0074 	add	r0, sp, #116	; 0x74
+    11b8:	ebfffdf5 	bl	994 <carMove>
+        carMove(&road7);
+    11bc:	e28d0048 	add	r0, sp, #72	; 0x48
+    11c0:	ebfffdf3 	bl	994 <carMove>
+
+        // plot the roads
+        plot_road(&road_3);
+    11c4:	e28d0c02 	add	r0, sp, #512	; 0x200
+    11c8:	ebfffd50 	bl	710 <plot_road>
+        plot_road(&road_2);
+    11cc:	e28d0f75 	add	r0, sp, #468	; 0x1d4
+    11d0:	ebfffd4e 	bl	710 <plot_road>
+        plot_road(&road_1);
+    11d4:	e28d0f6a 	add	r0, sp, #424	; 0x1a8
+    11d8:	ebfffd4c 	bl	710 <plot_road>
+        plot_road(&road0);
+    11dc:	e28d0f5f 	add	r0, sp, #380	; 0x17c
+    11e0:	ebfffd4a 	bl	710 <plot_road>
+        plot_road(&road1);
+    11e4:	e28d0e15 	add	r0, sp, #336	; 0x150
+    11e8:	ebfffd48 	bl	710 <plot_road>
+        plot_road(&road2);
+    11ec:	e28d0f49 	add	r0, sp, #292	; 0x124
+    11f0:	ebfffd46 	bl	710 <plot_road>
+        plot_road(&road3);
+    11f4:	e28d00f8 	add	r0, sp, #248	; 0xf8
+    11f8:	ebfffd44 	bl	710 <plot_road>
+        plot_road(&road4);
+    11fc:	e28d00cc 	add	r0, sp, #204	; 0xcc
+    1200:	ebfffd42 	bl	710 <plot_road>
+        plot_road(&road5);
+    1204:	e28d00a0 	add	r0, sp, #160	; 0xa0
+    1208:	ebfffd40 	bl	710 <plot_road>
+        plot_road(&road6);
+    120c:	e28d0074 	add	r0, sp, #116	; 0x74
+    1210:	ebfffd3e 	bl	710 <plot_road>
+        plot_road(&road7);
+    1214:	e28d0048 	add	r0, sp, #72	; 0x48
+    1218:	ebfffd3c 	bl	710 <plot_road>
+
+        // plot the roads and chicken in order so that the chicken won't appear standing
+        // on any cars when it is actually behind the car
+        // This achieves 3D interface very well
+        plot_car_on_road(&road_3);
+    121c:	e28d0c02 	add	r0, sp, #512	; 0x200
+    1220:	ebfffd2e 	bl	6e0 <plot_car_on_road>
+        if (road_3.stepOn)
+    1224:	e5dd3204 	ldrb	r3, [sp, #516]	; 0x204
+    1228:	e3530000 	cmp	r3, #0
+    122c:	0a000001 	beq	1238 <main+0x610>
+            plot_chicken(&newChick);
+    1230:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    1234:	ebfffd5f 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road_2);
+    1238:	e28d0f75 	add	r0, sp, #468	; 0x1d4
+    123c:	ebfffd27 	bl	6e0 <plot_car_on_road>
+        if (road_2.stepOn)
+    1240:	e5dd31d8 	ldrb	r3, [sp, #472]	; 0x1d8
+    1244:	e3530000 	cmp	r3, #0
+    1248:	0a000001 	beq	1254 <main+0x62c>
+            plot_chicken(&newChick);
+    124c:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    1250:	ebfffd58 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road_1);
+    1254:	e28d0f6a 	add	r0, sp, #424	; 0x1a8
+    1258:	ebfffd20 	bl	6e0 <plot_car_on_road>
+        if (road_1.stepOn)
+    125c:	e5dd31ac 	ldrb	r3, [sp, #428]	; 0x1ac
+    1260:	e3530000 	cmp	r3, #0
+    1264:	0a000001 	beq	1270 <main+0x648>
+            plot_chicken(&newChick);
+    1268:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    126c:	ebfffd51 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road0);
+    1270:	e28d0f5f 	add	r0, sp, #380	; 0x17c
+    1274:	ebfffd19 	bl	6e0 <plot_car_on_road>
+        if (road0.stepOn)
+    1278:	e5dd3180 	ldrb	r3, [sp, #384]	; 0x180
+    127c:	e3530000 	cmp	r3, #0
+    1280:	0a000001 	beq	128c <main+0x664>
+            plot_chicken(&newChick);
+    1284:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    1288:	ebfffd4a 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road1);
+    128c:	e28d0e15 	add	r0, sp, #336	; 0x150
+    1290:	ebfffd12 	bl	6e0 <plot_car_on_road>
+        if (road1.stepOn)
+    1294:	e5dd3154 	ldrb	r3, [sp, #340]	; 0x154
+    1298:	e3530000 	cmp	r3, #0
+    129c:	0a000001 	beq	12a8 <main+0x680>
+            plot_chicken(&newChick);
+    12a0:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    12a4:	ebfffd43 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road2);
+    12a8:	e28d0f49 	add	r0, sp, #292	; 0x124
+    12ac:	ebfffd0b 	bl	6e0 <plot_car_on_road>
+        if (road2.stepOn)
+    12b0:	e5dd3128 	ldrb	r3, [sp, #296]	; 0x128
+    12b4:	e3530000 	cmp	r3, #0
+    12b8:	0a000001 	beq	12c4 <main+0x69c>
+            plot_chicken(&newChick);
+    12bc:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    12c0:	ebfffd3c 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road3);
+    12c4:	e28d00f8 	add	r0, sp, #248	; 0xf8
+    12c8:	ebfffd04 	bl	6e0 <plot_car_on_road>
+        if (road3.stepOn)
+    12cc:	e5dd30fc 	ldrb	r3, [sp, #252]	; 0xfc
+    12d0:	e3530000 	cmp	r3, #0
+    12d4:	0a000001 	beq	12e0 <main+0x6b8>
+            plot_chicken(&newChick);
+    12d8:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    12dc:	ebfffd35 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road4);
+    12e0:	e28d00cc 	add	r0, sp, #204	; 0xcc
+    12e4:	ebfffcfd 	bl	6e0 <plot_car_on_road>
+        if (road4.stepOn)
+    12e8:	e5dd30d0 	ldrb	r3, [sp, #208]	; 0xd0
+    12ec:	e3530000 	cmp	r3, #0
+    12f0:	0a000001 	beq	12fc <main+0x6d4>
+            plot_chicken(&newChick);
+    12f4:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    12f8:	ebfffd2e 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road5);
+    12fc:	e28d00a0 	add	r0, sp, #160	; 0xa0
+    1300:	ebfffcf6 	bl	6e0 <plot_car_on_road>
+        if (road5.stepOn)
+    1304:	e5dd30a4 	ldrb	r3, [sp, #164]	; 0xa4
+    1308:	e3530000 	cmp	r3, #0
+    130c:	0a000001 	beq	1318 <main+0x6f0>
+            plot_chicken(&newChick);
+    1310:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    1314:	ebfffd27 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road6);
+    1318:	e28d0074 	add	r0, sp, #116	; 0x74
+    131c:	ebfffcef 	bl	6e0 <plot_car_on_road>
+        if (road6.stepOn)
+    1320:	e5dd3078 	ldrb	r3, [sp, #120]	; 0x78
+    1324:	e3530000 	cmp	r3, #0
+    1328:	0a000001 	beq	1334 <main+0x70c>
+            plot_chicken(&newChick);
+    132c:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    1330:	ebfffd20 	bl	7b8 <plot_chicken>
+
+        plot_car_on_road(&road7);
+    1334:	e28d0048 	add	r0, sp, #72	; 0x48
+    1338:	ebfffce8 	bl	6e0 <plot_car_on_road>
+        if (road7.stepOn)
+    133c:	e5dd304c 	ldrb	r3, [sp, #76]	; 0x4c
+    1340:	e3530000 	cmp	r3, #0
+    1344:	0a000001 	beq	1350 <main+0x728>
+            plot_chicken(&newChick);
+    1348:	e28d0f8b 	add	r0, sp, #556	; 0x22c
+    134c:	ebfffd19 	bl	7b8 <plot_chicken>
+
+
+        // update the gameOver status
+        gameOver |= carHitTest(&road_3, &newChick);
+    1350:	e5d46010 	ldrb	r6, [r4, #16]
+    1354:	e28d0c02 	add	r0, sp, #512	; 0x200
+    1358:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    135c:	ebfffddc 	bl	ad4 <carHitTest>
+    1360:	e1800006 	orr	r0, r0, r6
+    1364:	e6ef6070 	uxtb	r6, r0
+    1368:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road_2, &newChick);
+    136c:	e28d0f75 	add	r0, sp, #468	; 0x1d4
+    1370:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    1374:	ebfffdd6 	bl	ad4 <carHitTest>
+    1378:	e1860000 	orr	r0, r6, r0
+    137c:	e6ef6070 	uxtb	r6, r0
+    1380:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road_1, &newChick);
+    1384:	e28d0f6a 	add	r0, sp, #424	; 0x1a8
+    1388:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    138c:	ebfffdd0 	bl	ad4 <carHitTest>
+    1390:	e1860000 	orr	r0, r6, r0
+    1394:	e6ef6070 	uxtb	r6, r0
+    1398:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road0, &newChick);
+    139c:	e28d0f5f 	add	r0, sp, #380	; 0x17c
+    13a0:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    13a4:	ebfffdca 	bl	ad4 <carHitTest>
+    13a8:	e1860000 	orr	r0, r6, r0
+    13ac:	e6ef6070 	uxtb	r6, r0
+    13b0:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road1, &newChick);
+    13b4:	e28d0e15 	add	r0, sp, #336	; 0x150
+    13b8:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    13bc:	ebfffdc4 	bl	ad4 <carHitTest>
+    13c0:	e1860000 	orr	r0, r6, r0
+    13c4:	e6ef6070 	uxtb	r6, r0
+    13c8:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road2, &newChick);
+    13cc:	e28d0f49 	add	r0, sp, #292	; 0x124
+    13d0:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    13d4:	ebfffdbe 	bl	ad4 <carHitTest>
+    13d8:	e1860000 	orr	r0, r6, r0
+    13dc:	e6ef6070 	uxtb	r6, r0
+    13e0:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road3, &newChick);
+    13e4:	e28d00f8 	add	r0, sp, #248	; 0xf8
+    13e8:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    13ec:	ebfffdb8 	bl	ad4 <carHitTest>
+    13f0:	e1860000 	orr	r0, r6, r0
+    13f4:	e6ef6070 	uxtb	r6, r0
+    13f8:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road4, &newChick);
+    13fc:	e28d00cc 	add	r0, sp, #204	; 0xcc
+    1400:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    1404:	ebfffdb2 	bl	ad4 <carHitTest>
+    1408:	e1860000 	orr	r0, r6, r0
+    140c:	e6ef6070 	uxtb	r6, r0
+    1410:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road5, &newChick);
+    1414:	e28d00a0 	add	r0, sp, #160	; 0xa0
+    1418:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    141c:	ebfffdac 	bl	ad4 <carHitTest>
+    1420:	e1860000 	orr	r0, r6, r0
+    1424:	e6ef6070 	uxtb	r6, r0
+    1428:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road6, &newChick);
+    142c:	e28d0074 	add	r0, sp, #116	; 0x74
+    1430:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    1434:	ebfffda6 	bl	ad4 <carHitTest>
+    1438:	e1860000 	orr	r0, r6, r0
+    143c:	e6ef6070 	uxtb	r6, r0
+    1440:	e5c46010 	strb	r6, [r4, #16]
+        gameOver |= carHitTest(&road7, &newChick);
+    1444:	e28d0048 	add	r0, sp, #72	; 0x48
+    1448:	e28d1f8b 	add	r1, sp, #556	; 0x22c
+    144c:	ebfffda0 	bl	ad4 <carHitTest>
+    1450:	e1860000 	orr	r0, r6, r0
+    1454:	e6ef6070 	uxtb	r6, r0
+    1458:	e5c46010 	strb	r6, [r4, #16]
+
+        gameOverRoutine:
+        {
+            if (gameOver) {
+    145c:	e3560000 	cmp	r6, #0
+    1460:	0a000019 	beq	14cc <main+0x8a4>
+
+                plot_image(0, 0, image_gameOverPage_320x240, 320, 240);
+    1464:	e3a070f0 	mov	r7, #240	; 0xf0
+    1468:	e3a06d05 	mov	r6, #320	; 0x140
+    146c:	e58d7000 	str	r7, [sp]
+    1470:	e1a0000b 	mov	r0, r11
+    1474:	e1a0100b 	mov	r1, r11
+    1478:	e1a0200a 	mov	r2, r10
+    147c:	e1a03006 	mov	r3, r6
+    1480:	ebfffc5e 	bl	600 <plot_image>
+
+                int KEY_release = *KEY_EDGE_ptr;
+    1484:	e515362c 	ldr	r3, [r5, #-1580]	; 0xfffff9d4
+    1488:	e5932000 	ldr	r2, [r3]
+                *KEY_EDGE_ptr = 0xF;
+    148c:	e3a0100f 	mov	r1, #15
+    1490:	e5831000 	str	r1, [r3]
+
+                if (KEY_release == 0b0001||KEYBOARD_RESTART) { // press KEY0 to restart
+    1494:	e3520001 	cmp	r2, #1
+    1498:	0a000002 	beq	14a8 <main+0x880>
+    149c:	e5d4300b 	ldrb	r3, [r4, #11]
+    14a0:	e3530000 	cmp	r3, #0
+    14a4:	0a000001 	beq	14b0 <main+0x888>
+                    KEYBOARD_RESTART = false;
+    14a8:	e5c4b00b 	strb	r11, [r4, #11]
+    14ac:	eafffdfe 	b	cac <main+0x84>
+                    gameOver = false;
+                    gameOn = true;
+                    goto newGame;
+                }
+                wait_for_vsync(); // swap front and back buffers on VGA vertical sync
+    14b0:	ebfffcb2 	bl	780 <wait_for_vsync>
+                pixel_buffer_start = *(pixel_ctrl_ptr + 1); // new back buffer
+    14b4:	e5153764 	ldr	r3, [r5, #-1892]	; 0xfffff89c
+    14b8:	e5933004 	ldr	r3, [r3, #4]
+    14bc:	e584300c 	str	r3, [r4, #12]
+        gameOver |= carHitTest(&road6, &newChick);
+        gameOver |= carHitTest(&road7, &newChick);
+
+        gameOverRoutine:
+        {
+            if (gameOver) {
+    14c0:	e5d43010 	ldrb	r3, [r4, #16]
+    14c4:	e3530000 	cmp	r3, #0
+    14c8:	1affffe7 	bne	146c <main+0x844>
+        }
+
+
+        nextFrame:
+        {
+            wait_for_vsync(); // swap front and back buffers on VGA vertical sync
+    14cc:	ebfffcab 	bl	780 <wait_for_vsync>
+            pixel_buffer_start = *(pixel_ctrl_ptr + 1); // new back buffer
+    14d0:	e5153764 	ldr	r3, [r5, #-1892]	; 0xfffff89c
+    14d4:	e5933004 	ldr	r3, [r3, #4]
+    14d8:	e584300c 	str	r3, [r4, #12]
+        }
+        if (!gameOn) {
+    14dc:	e5d43011 	ldrb	r3, [r4, #17]
+    14e0:	e3530000 	cmp	r3, #0
+    14e4:	0afffdf0 	beq	cac <main+0x84>
+            goto newGame;
+        }
+
+        // plot score
+        char myScoreString[40];
+        if (score_hundred != 0) {
+    14e8:	e59d3010 	ldr	r3, [sp, #16]
+    14ec:	e3530000 	cmp	r3, #0
+            myScoreString[0] = score_hundred + '0';
+    14f0:	12833030 	addne	r3, r3, #48	; 0x30
+        } else {
+            myScoreString[0] = ' ';
+    14f4:	03a03020 	moveq	r3, #32
+    14f8:	e5cd3020 	strb	r3, [sp, #32]
+        }
+        if (score_hundred == 0 && score_ten == 0) {
+    14fc:	e59d0014 	ldr	r0, [sp, #20]
+    1500:	e59d1010 	ldr	r1, [sp, #16]
+    1504:	e1900001 	orrs	r0, r0, r1
+            myScoreString[1] = ' ';
+    1508:	03a03020 	moveq	r3, #32
+        } else {
+            myScoreString[1] = score_ten + '0';
+    150c:	159d2014 	ldrne	r2, [sp, #20]
+    1510:	12823030 	addne	r3, r2, #48	; 0x30
+    1514:	e5cd3021 	strb	r3, [sp, #33]	; 0x21
+        }
+        myScoreString[2] = score_one + '0';
+    1518:	e59d001c 	ldr	r0, [sp, #28]
+    151c:	e2803030 	add	r3, r0, #48	; 0x30
+    1520:	e5cd3022 	strb	r3, [sp, #34]	; 0x22
+        myScoreString[3] = '\0';
+    1524:	e5cd9023 	strb	r9, [sp, #35]	; 0x23
+        VGA_text(300, 0, myScoreString);
+    1528:	e3a00f4b 	mov	r0, #300	; 0x12c
+    152c:	e1a0100b 	mov	r1, r11
+    1530:	e28d2020 	add	r2, sp, #32
+    1534:	ebfffbdd 	bl	4b0 <VGA_text>
+        road7.carOnRoad.y += 7 * 30;
+        pixel_buffer_start = *(pixel_ctrl_ptr + 1); // we draw on the back buffer
+    }
+    *KEY_EDGE_ptr = 0xF;
+    while (true) {
+        oneSecCount++;
+    1538:	e59d1008 	ldr	r1, [sp, #8]
+    153c:	e2811001 	add	r1, r1, #1
+    1540:	e58d1008 	str	r1, [sp, #8]
+        if (oneSecCount == 10) {
+    1544:	e351000a 	cmp	r1, #10
+    1548:	0afffedf 	beq	10cc <main+0x4a4>
+    154c:	eafffef3 	b	1120 <main+0x4f8>
+
+00001550 <atexit>:
+    1550:	e1a01000 	mov	r1, r0
+    1554:	e3a00000 	mov	r0, #0
+    1558:	e92d4008 	push	{r3, lr}
+    155c:	e1a02000 	mov	r2, r0
+    1560:	e1a03000 	mov	r3, r0
+    1564:	eb00002c 	bl	161c <__register_exitproc>
+    1568:	e8bd4008 	pop	{r3, lr}
+    156c:	e12fff1e 	bx	lr
+
+00001570 <exit>:
+    1570:	e92d4008 	push	{r3, lr}
+    1574:	e3a01000 	mov	r1, #0
+    1578:	e1a04000 	mov	r4, r0
+    157c:	eb000063 	bl	1710 <__call_exitprocs>
+    1580:	e59f3018 	ldr	r3, [pc, #24]	; 15a0 <exit+0x30>
+    1584:	e5930000 	ldr	r0, [r3]
+    1588:	e590303c 	ldr	r3, [r0, #60]	; 0x3c
+    158c:	e3530000 	cmp	r3, #0
+    1590:	11a0e00f 	movne	lr, pc
+    1594:	112fff13 	bxne	r3
+    1598:	e1a00004 	mov	r0, r4
+    159c:	eb0000e7 	bl	1940 <_exit>
+    15a0:	000019fc 	.word	0x000019fc
+
+000015a4 <srand>:
+    15a4:	e59f3010 	ldr	r3, [pc, #16]	; 15bc <srand+0x18>
+    15a8:	e5933000 	ldr	r3, [r3]
+    15ac:	e3a02000 	mov	r2, #0
+    15b0:	e58300a8 	str	r0, [r3, #168]	; 0xa8
+    15b4:	e58320ac 	str	r2, [r3, #172]	; 0xac
+    15b8:	e12fff1e 	bx	lr
+    15bc:	0009f268 	.word	0x0009f268
+
+000015c0 <rand>:
+    15c0:	e52d4004 	push	{r4}		; (str r4, [sp, #-4]!)
+    15c4:	e59f3044 	ldr	r3, [pc, #68]	; 1610 <rand+0x50>
+    15c8:	e593c000 	ldr	r12, [r3]
+    15cc:	e59f4040 	ldr	r4, [pc, #64]	; 1614 <rand+0x54>
+    15d0:	e59c20a8 	ldr	r2, [r12, #168]	; 0xa8
+    15d4:	e0040492 	mul	r4, r2, r4
+    15d8:	e59c10ac 	ldr	r1, [r12, #172]	; 0xac
+    15dc:	e59f3034 	ldr	r3, [pc, #52]	; 1618 <rand+0x58>
+    15e0:	e0244193 	mla	r4, r3, r1, r4
+    15e4:	e0810392 	umull	r0, r1, r2, r3
+    15e8:	e3a02001 	mov	r2, #1
+    15ec:	e0922000 	adds	r2, r2, r0
+    15f0:	e0841001 	add	r1, r4, r1
+    15f4:	e3a03000 	mov	r3, #0
+    15f8:	e0a33001 	adc	r3, r3, r1
+    15fc:	e58c20a8 	str	r2, [r12, #168]	; 0xa8
+    1600:	e58c30ac 	str	r3, [r12, #172]	; 0xac
+    1604:	e3c30102 	bic	r0, r3, #-2147483648	; 0x80000000
+    1608:	e8bd0010 	ldmfd	sp!, {r4}
+    160c:	e12fff1e 	bx	lr
+    1610:	0009f268 	.word	0x0009f268
+    1614:	5851f42d 	.word	0x5851f42d
+    1618:	4c957f2d 	.word	0x4c957f2d
+
+0000161c <__register_exitproc>:
+    161c:	e59fc0e4 	ldr	r12, [pc, #228]	; 1708 <__register_exitproc+0xec>
+    1620:	e92d41f0 	push	{r4, r5, r6, r7, r8, lr}
+    1624:	e59c4000 	ldr	r4, [r12]
+    1628:	e594c148 	ldr	r12, [r4, #328]	; 0x148
+    162c:	e35c0000 	cmp	r12, #0
+    1630:	0284cf53 	addeq	r12, r4, #332	; 0x14c
+    1634:	e59c5004 	ldr	r5, [r12, #4]
+    1638:	0584c148 	streq	r12, [r4, #328]	; 0x148
+    163c:	e355001f 	cmp	r5, #31
+    1640:	e24dd010 	sub	sp, sp, #16
+    1644:	e1a06000 	mov	r6, r0
+    1648:	da000015 	ble	16a4 <__register_exitproc+0x88>
+    164c:	e59f00b8 	ldr	r0, [pc, #184]	; 170c <__register_exitproc+0xf0>
+    1650:	e3500000 	cmp	r0, #0
+    1654:	1a000001 	bne	1660 <__register_exitproc+0x44>
+    1658:	e3e00000 	mvn	r0, #0
+    165c:	ea000018 	b	16c4 <__register_exitproc+0xa8>
+    1660:	e3a00e19 	mov	r0, #400	; 0x190
+    1664:	e58d100c 	str	r1, [sp, #12]
+    1668:	e58d2008 	str	r2, [sp, #8]
+    166c:	e58d3004 	str	r3, [sp, #4]
+    1670:	e320f000 	nop	{0}
+    1674:	e250c000 	subs	r12, r0, #0
+    1678:	e59d100c 	ldr	r1, [sp, #12]
+    167c:	e59d2008 	ldr	r2, [sp, #8]
+    1680:	e59d3004 	ldr	r3, [sp, #4]
+    1684:	0afffff3 	beq	1658 <__register_exitproc+0x3c>
+    1688:	e5945148 	ldr	r5, [r4, #328]	; 0x148
+    168c:	e3a00000 	mov	r0, #0
+    1690:	e58c0004 	str	r0, [r12, #4]
+    1694:	e58c5000 	str	r5, [r12]
+    1698:	e584c148 	str	r12, [r4, #328]	; 0x148
+    169c:	e58c0188 	str	r0, [r12, #392]	; 0x188
+    16a0:	e58c018c 	str	r0, [r12, #396]	; 0x18c
+    16a4:	e3560000 	cmp	r6, #0
+    16a8:	e59c4004 	ldr	r4, [r12, #4]
+    16ac:	1a000007 	bne	16d0 <__register_exitproc+0xb4>
+    16b0:	e2843002 	add	r3, r4, #2
+    16b4:	e2844001 	add	r4, r4, #1
+    16b8:	e78c1103 	str	r1, [r12, r3, lsl #2]
+    16bc:	e58c4004 	str	r4, [r12, #4]
+    16c0:	e3a00000 	mov	r0, #0
+    16c4:	e28dd010 	add	sp, sp, #16
+    16c8:	e8bd41f0 	pop	{r4, r5, r6, r7, r8, lr}
+    16cc:	e12fff1e 	bx	lr
+    16d0:	e3a00001 	mov	r0, #1
+    16d4:	e1a00410 	lsl	r0, r0, r4
+    16d8:	e08c8104 	add	r8, r12, r4, lsl #2
+    16dc:	e3560002 	cmp	r6, #2
+    16e0:	e59c7188 	ldr	r7, [r12, #392]	; 0x188
+    16e4:	e5883108 	str	r3, [r8, #264]	; 0x108
+    16e8:	059c318c 	ldreq	r3, [r12, #396]	; 0x18c
+    16ec:	e1877000 	orr	r7, r7, r0
+    16f0:	01830000 	orreq	r0, r3, r0
+    16f4:	e1a05008 	mov	r5, r8
+    16f8:	e5882088 	str	r2, [r8, #136]	; 0x88
+    16fc:	e58c7188 	str	r7, [r12, #392]	; 0x188
+    1700:	058c018c 	streq	r0, [r12, #396]	; 0x18c
+    1704:	eaffffe9 	b	16b0 <__register_exitproc+0x94>
+    1708:	000019fc 	.word	0x000019fc
+    170c:	00000000 	.word	0x00000000
+
+00001710 <__call_exitprocs>:
+    1710:	e92d4ff0 	push	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
+    1714:	e59f3168 	ldr	r3, [pc, #360]	; 1884 <__call_exitprocs+0x174>
+    1718:	e5933000 	ldr	r3, [r3]
+    171c:	e24dd014 	sub	sp, sp, #20
+    1720:	e58d3004 	str	r3, [sp, #4]
+    1724:	e2833f52 	add	r3, r3, #328	; 0x148
+    1728:	e58d0008 	str	r0, [sp, #8]
+    172c:	e58d300c 	str	r3, [sp, #12]
+    1730:	e1a07001 	mov	r7, r1
+    1734:	e3a08001 	mov	r8, #1
+    1738:	e59d3004 	ldr	r3, [sp, #4]
+    173c:	e5936148 	ldr	r6, [r3, #328]	; 0x148
+    1740:	e3560000 	cmp	r6, #0
+    1744:	e59db00c 	ldr	r11, [sp, #12]
+    1748:	0a000033 	beq	181c <__call_exitprocs+0x10c>
+    174c:	e5965004 	ldr	r5, [r6, #4]
+    1750:	e2554001 	subs	r4, r5, #1
+    1754:	5286a088 	addpl	r10, r6, #136	; 0x88
+    1758:	5285501f 	addpl	r5, r5, #31
+    175c:	508a5105 	addpl	r5, r10, r5, lsl #2
+    1760:	5a000007 	bpl	1784 <__call_exitprocs+0x74>
+    1764:	ea000029 	b	1810 <__call_exitprocs+0x100>
+    1768:	e5953000 	ldr	r3, [r5]
+    176c:	e1530007 	cmp	r3, r7
+    1770:	0a000005 	beq	178c <__call_exitprocs+0x7c>
+    1774:	e2444001 	sub	r4, r4, #1
+    1778:	e3740001 	cmn	r4, #1
+    177c:	e2455004 	sub	r5, r5, #4
+    1780:	0a000022 	beq	1810 <__call_exitprocs+0x100>
+    1784:	e3570000 	cmp	r7, #0
+    1788:	1afffff6 	bne	1768 <__call_exitprocs+0x58>
+    178c:	e5963004 	ldr	r3, [r6, #4]
+    1790:	e06a2005 	rsb	r2, r10, r5
+    1794:	e2433001 	sub	r3, r3, #1
+    1798:	e0862002 	add	r2, r6, r2
+    179c:	e1530004 	cmp	r3, r4
+    17a0:	e5123078 	ldr	r3, [r2, #-120]	; 0xffffff88
+    17a4:	13a01000 	movne	r1, #0
+    17a8:	05864004 	streq	r4, [r6, #4]
+    17ac:	15021078 	strne	r1, [r2, #-120]	; 0xffffff88
+    17b0:	e3530000 	cmp	r3, #0
+    17b4:	0affffee 	beq	1774 <__call_exitprocs+0x64>
+    17b8:	e1a02418 	lsl	r2, r8, r4
+    17bc:	e5961188 	ldr	r1, [r6, #392]	; 0x188
+    17c0:	e1120001 	tst	r2, r1
+    17c4:	e5969004 	ldr	r9, [r6, #4]
+    17c8:	0a000016 	beq	1828 <__call_exitprocs+0x118>
+    17cc:	e596118c 	ldr	r1, [r6, #396]	; 0x18c
+    17d0:	e1120001 	tst	r2, r1
+    17d4:	1a000016 	bne	1834 <__call_exitprocs+0x124>
+    17d8:	e59d0008 	ldr	r0, [sp, #8]
+    17dc:	e5151080 	ldr	r1, [r5, #-128]	; 0xffffff80
+    17e0:	e1a0e00f 	mov	lr, pc
+    17e4:	e12fff13 	bx	r3
+    17e8:	e5963004 	ldr	r3, [r6, #4]
+    17ec:	e1530009 	cmp	r3, r9
+    17f0:	1affffd0 	bne	1738 <__call_exitprocs+0x28>
+    17f4:	e59b3000 	ldr	r3, [r11]
+    17f8:	e1530006 	cmp	r3, r6
+    17fc:	1affffcd 	bne	1738 <__call_exitprocs+0x28>
+    1800:	e2444001 	sub	r4, r4, #1
+    1804:	e3740001 	cmn	r4, #1
+    1808:	e2455004 	sub	r5, r5, #4
+    180c:	1affffdc 	bne	1784 <__call_exitprocs+0x74>
+    1810:	e59f1070 	ldr	r1, [pc, #112]	; 1888 <__call_exitprocs+0x178>
+    1814:	e3510000 	cmp	r1, #0
+    1818:	1a000009 	bne	1844 <__call_exitprocs+0x134>
+    181c:	e28dd014 	add	sp, sp, #20
+    1820:	e8bd4ff0 	pop	{r4, r5, r6, r7, r8, r9, r10, r11, lr}
+    1824:	e12fff1e 	bx	lr
+    1828:	e1a0e00f 	mov	lr, pc
+    182c:	e12fff13 	bx	r3
+    1830:	eaffffec 	b	17e8 <__call_exitprocs+0xd8>
+    1834:	e5150080 	ldr	r0, [r5, #-128]	; 0xffffff80
+    1838:	e1a0e00f 	mov	lr, pc
+    183c:	e12fff13 	bx	r3
+    1840:	eaffffe8 	b	17e8 <__call_exitprocs+0xd8>
+    1844:	e5963004 	ldr	r3, [r6, #4]
+    1848:	e3530000 	cmp	r3, #0
+    184c:	e5963000 	ldr	r3, [r6]
+    1850:	1a000008 	bne	1878 <__call_exitprocs+0x168>
+    1854:	e3530000 	cmp	r3, #0
+    1858:	0a000006 	beq	1878 <__call_exitprocs+0x168>
+    185c:	e1a00006 	mov	r0, r6
+    1860:	e58b3000 	str	r3, [r11]
+    1864:	e320f000 	nop	{0}
+    1868:	e59b6000 	ldr	r6, [r11]
+    186c:	e3560000 	cmp	r6, #0
+    1870:	1affffb5 	bne	174c <__call_exitprocs+0x3c>
+    1874:	eaffffe8 	b	181c <__call_exitprocs+0x10c>
+    1878:	e1a0b006 	mov	r11, r6
+    187c:	e1a06003 	mov	r6, r3
+    1880:	eafffff9 	b	186c <__call_exitprocs+0x15c>
+    1884:	000019fc 	.word	0x000019fc
+    1888:	00000000 	.word	0x00000000
+
+0000188c <register_fini>:
+    188c:	e92d4008 	push	{r3, lr}
+    1890:	e59f3010 	ldr	r3, [pc, #16]	; 18a8 <register_fini+0x1c>
+    1894:	e3530000 	cmp	r3, #0
+    1898:	159f000c 	ldrne	r0, [pc, #12]	; 18ac <register_fini+0x20>
+    189c:	1bffff2b 	blne	1550 <atexit>
+    18a0:	e8bd4008 	pop	{r3, lr}
+    18a4:	e12fff1e 	bx	lr
+    18a8:	00001a24 	.word	0x00001a24
+    18ac:	000018b0 	.word	0x000018b0
+
+000018b0 <__libc_fini_array>:
+    18b0:	e92d4038 	push	{r3, r4, r5, lr}
+    18b4:	e59f5030 	ldr	r5, [pc, #48]	; 18ec <__libc_fini_array+0x3c>
+    18b8:	e59f4030 	ldr	r4, [pc, #48]	; 18f0 <__libc_fini_array+0x40>
+    18bc:	e0654004 	rsb	r4, r5, r4
+    18c0:	e1b04144 	asrs	r4, r4, #2
+    18c4:	10855104 	addne	r5, r5, r4, lsl #2
+    18c8:	0a000004 	beq	18e0 <__libc_fini_array+0x30>
+    18cc:	e5353004 	ldr	r3, [r5, #-4]!
+    18d0:	e1a0e00f 	mov	lr, pc
+    18d4:	e12fff13 	bx	r3
+    18d8:	e2544001 	subs	r4, r4, #1
+    18dc:	1afffffa 	bne	18cc <__libc_fini_array+0x1c>
+    18e0:	eb00004f 	bl	1a24 <__libc_fini>
+    18e4:	e8bd4038 	pop	{r3, r4, r5, lr}
+    18e8:	e12fff1e 	bx	lr
+    18ec:	00001a3c 	.word	0x00001a3c
+    18f0:	00001a40 	.word	0x00001a40
+
+000018f4 <__cs3_premain>:
+    18f4:	e92d4008 	push	{r3, lr}
+    18f8:	eb000017 	bl	195c <__libc_init_array>
+    18fc:	e59f3030 	ldr	r3, [pc, #48]	; 1934 <__cs3_premain+0x40>
+    1900:	e3530000 	cmp	r3, #0
+    1904:	15930000 	ldrne	r0, [r3]
+    1908:	01a00003 	moveq	r0, r3
+    190c:	e59f3024 	ldr	r3, [pc, #36]	; 1938 <__cs3_premain+0x44>
+    1910:	e3530000 	cmp	r3, #0
+    1914:	15931000 	ldrne	r1, [r3]
+    1918:	01a01003 	moveq	r1, r3
+    191c:	e3a02000 	mov	r2, #0
+    1920:	ebfffcc0 	bl	c28 <main>
+    1924:	e59f3010 	ldr	r3, [pc, #16]	; 193c <__cs3_premain+0x48>
+    1928:	e3530000 	cmp	r3, #0
+    192c:	1bffff0f 	blne	1570 <exit>
+    1930:	eafffffe 	b	1930 <__cs3_premain+0x3c>
+	...
+    193c:	00001570 	.word	0x00001570
+
+00001940 <_exit>:
+    1940:	e52de004 	push	{lr}		; (str lr, [sp, #-4]!)
+    1944:	e3a00018 	mov	r0, #24
+    1948:	e59f1004 	ldr	r1, [pc, #4]	; 1954 <_exit+0x14>
+    194c:	ef123456 	svc	0x00123456
+    1950:	eafffffe 	b	1950 <_exit+0x10>
+    1954:	00020026 	.word	0x00020026
+
+00001958 <__cs3_isr_interrupt>:
+    1958:	eafffffe 	b	1958 <__cs3_isr_interrupt>
+
+0000195c <__libc_init_array>:
+    195c:	e92d4070 	push	{r4, r5, r6, lr}
+    1960:	e59f506c 	ldr	r5, [pc, #108]	; 19d4 <__libc_init_array+0x78>
+    1964:	e59f606c 	ldr	r6, [pc, #108]	; 19d8 <__libc_init_array+0x7c>
+    1968:	e0656006 	rsb	r6, r5, r6
+    196c:	e1b06146 	asrs	r6, r6, #2
+    1970:	12455004 	subne	r5, r5, #4
+    1974:	13a04000 	movne	r4, #0
+    1978:	0a000005 	beq	1994 <__libc_init_array+0x38>
+    197c:	e5b53004 	ldr	r3, [r5, #4]!
+    1980:	e2844001 	add	r4, r4, #1
+    1984:	e1a0e00f 	mov	lr, pc
+    1988:	e12fff13 	bx	r3
+    198c:	e1560004 	cmp	r6, r4
+    1990:	1afffff9 	bne	197c <__libc_init_array+0x20>
+    1994:	e59f5040 	ldr	r5, [pc, #64]	; 19dc <__libc_init_array+0x80>
+    1998:	e59f6040 	ldr	r6, [pc, #64]	; 19e0 <__libc_init_array+0x84>
+    199c:	e0656006 	rsb	r6, r5, r6
+    19a0:	eb000017 	bl	1a04 <_init>
+    19a4:	e1b06146 	asrs	r6, r6, #2
+    19a8:	12455004 	subne	r5, r5, #4
+    19ac:	13a04000 	movne	r4, #0
+    19b0:	0a000005 	beq	19cc <__libc_init_array+0x70>
+    19b4:	e5b53004 	ldr	r3, [r5, #4]!
+    19b8:	e2844001 	add	r4, r4, #1
+    19bc:	e1a0e00f 	mov	lr, pc
+    19c0:	e12fff13 	bx	r3
+    19c4:	e1560004 	cmp	r6, r4
+    19c8:	1afffff9 	bne	19b4 <__libc_init_array+0x58>
+    19cc:	e8bd4070 	pop	{r4, r5, r6, lr}
+    19d0:	e12fff1e 	bx	lr
+    19d4:	00001a1c 	.word	0x00001a1c
+    19d8:	00001a1c 	.word	0x00001a1c
+    19dc:	00001a1c 	.word	0x00001a1c
+    19e0:	00001a24 	.word	0x00001a24
+
+Disassembly of section .rodata:
+
+000019e8 <_global_impure_ptr-0x14>:
+    19e8:	000000a0 	.word	0x000000a0
+    19ec:	000000ba 	.word	0x000000ba
+    19f0:	00000000 	.word	0x00000000
+    19f4:	00000016 	.word	0x00000016
+    19f8:	00000022 	.word	0x00000022
+
+000019fc <_global_impure_ptr>:
+    19fc:	0009f270 00000043                       p...C...
+
+00001a04 <_init>:
+    1a04:	e1a0c00d 	mov	r12, sp
+    1a08:	e92ddff8 	push	{r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, lr, pc}
+    1a0c:	e24cb004 	sub	r11, r12, #4
+    1a10:	e24bd028 	sub	sp, r11, #40	; 0x28
+    1a14:	e89d6ff0 	ldm	sp, {r4, r5, r6, r7, r8, r9, r10, r11, sp, lr}
+    1a18:	e12fff1e 	bx	lr
+
+00001a1c <__init_array_start>:
+    1a1c:	0000188c 	.word	0x0000188c
+
+00001a20 <__frame_dummy_init_array_entry>:
+    1a20:	00000208                                ....
+
+00001a24 <__libc_fini>:
+    1a24:	e1a0c00d 	mov	r12, sp
+    1a28:	e92ddff8 	push	{r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, lr, pc}
+    1a2c:	e24cb004 	sub	r11, r12, #4
+    1a30:	e24bd028 	sub	sp, r11, #40	; 0x28
+    1a34:	e89d6ff0 	ldm	sp, {r4, r5, r6, r7, r8, r9, r10, r11, sp, lr}
+    1a38:	e12fff1e 	bx	lr
+
+00001a3c <__fini_array_start>:
+    1a3c:	000001c4 	.word	0x000001c4
+
+00001a40 <__cs3_regions>:
+    1a40:	00000000 	.word	0x00000000
+    1a44:	00000040 	.word	0x00000040
+    1a48:	00000040 	.word	0x00000040
+    1a4c:	0009f660 	.word	0x0009f660
+    1a50:	00000030 	.word	0x00000030
+
+00001a54 <__cs3_regions_end>:
+    1a54:	00000000 	.word	0x00000000
